@@ -1084,7 +1084,7 @@
   
   /* Calendario */
   
-  .calendario h3 {
+  .calendario .titulo-dia {
     background-color: #fe4918;
     text-align: center;
     color: #fff;
