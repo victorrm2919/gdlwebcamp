@@ -16,77 +16,96 @@
       </div>
       <!--Cierre contenedor video-->
 
+
+      
+
       <div class="contenido-programa">
         <div class="contenedor">
           <div class="programa-evento">
             <h2>Programa del Evento</h2>
 
+              <?php 
+              try {
+                require_once 'includes/funciones/bd_conexion.php';  /* archivo requerido, crea conexion */ 
+                $sql = "SELECT * FROM categoria_evento";
+               
+                $resultado = $conn->query($sql);  /* consulta a base de datos */
+              } catch (Exception $e) {
+                  $error = $e->getMessage();  /* mensaje de error */
+              }?>
+
             <nav class="navegacion-evento">
-              <a href="#talleres"><i class="fas fa-code"></i> Talleres</a>
-              <a href="#conferencias"><i class="fas fa-comments"></i> Conferencias</a>
-              <a href="#seminarios"><i class="fas fa-university"></i> Seminarios</a>
+                <?php while ($cat = $resultado->fetch_assoc()) {
+                  $categoria = $cat['cat_evento'];
+                  $cat_icono = $cat['icono']; ?>
+                  <a href="#<?php echo strtolower($categoria)?>"><i class="fas <?php echo $cat_icono?>"></i><?php echo $categoria?> </a>
+                <?php }?>
             </nav>
 
-            <div id="talleres" class="info-curso ocultar clearfix">
-              <div class="detalle-evento">
-                <h3>HTML5, CSS3 y JavaScript</h3>
-                <p><i class="fas fa-clock"></i> 16:00 hrs</p>
-                <p><i class="fas fa-calendar-alt"></i> 10 de Diciembre</p>
-                <p><i class="fas fa-user"></i> Victor Manuel Ruiz</p>
-              </div>
+<!-- multiconsulta de MYSQL -->
+            <?php 
+            try {
+              require_once 'includes/funciones/bd_conexion.php';  /* archivo requerido, crea conexion */ 
+              $sql = "SELECT evento_id, nombre_evento, fecha_evento, hora_evento, cat_evento, icono, nombre_invitado, apellido_invitado ";
+              $sql .= "FROM eventos ";
+              $sql .= "INNER JOIN categoria_evento ";
+              $sql .= "ON eventos.id_cat_evento = categoria_evento.id_categoria ";
+              $sql .= "INNER JOIN invitados ";
+              $sql .= "ON eventos.id_inv = invitados.invitado_id ";
+              $sql .= "AND eventos.id_cat_evento = 1 ";
+              $sql .= "ORDER By evento_id LIMIT 2; ";
+              $sql .= "SELECT evento_id, nombre_evento, fecha_evento, hora_evento, cat_evento, icono, nombre_invitado, apellido_invitado ";
+              $sql .= "FROM eventos ";
+              $sql .= "INNER JOIN categoria_evento ";
+              $sql .= "ON eventos.id_cat_evento = categoria_evento.id_categoria ";
+              $sql .= "INNER JOIN invitados ";
+              $sql .= "ON eventos.id_inv = invitados.invitado_id ";
+              $sql .= "AND eventos.id_cat_evento = 2 ";
+              $sql .= "ORDER By evento_id LIMIT 2; ";
+              $sql .= "SELECT evento_id, nombre_evento, fecha_evento, hora_evento, cat_evento, icono, nombre_invitado, apellido_invitado ";
+              $sql .= "FROM eventos ";
+              $sql .= "INNER JOIN categoria_evento ";
+              $sql .= "ON eventos.id_cat_evento = categoria_evento.id_categoria ";
+              $sql .= "INNER JOIN invitados ";
+              $sql .= "ON eventos.id_inv = invitados.invitado_id ";
+              $sql .= "AND eventos.id_cat_evento = 3 ";
+              $sql .= "ORDER By evento_id LIMIT 2; ";
+            } catch (Exception $e) {
+                $error = $e->getMessage();  /* mensaje de error */
+            }
+            ?>
 
-              <div class="detalle-evento">
-                <h3>Responsive Web Desing</h3>
-                <p><i class="fas fa-clock"></i> 19:00 hrs</p>
-                <p><i class="fas fa-calendar-alt"></i> 10 de Diciembre</p>
-                <p><i class="fas fa-user"></i> Victor Manuel Ruiz</p>
-              </div>
+            <?php  $conn->multi_query($sql); ?> <!-- multiquery -->
 
-              <a href="#" class="btn right">Ver todos</a>
+            <?php do {
+              $resultado = $conn->store_result();
+              $row = $resultado->fetch_all(MYSQLI_ASSOC);   ?>
 
-            </div> <!-- Cierre info curso -->
+              <?php $i = 0;?>
+              <?php foreach ($row as $evento): ?>
+                <?php if ($i % 2 == 0): ?>
+                  <div id="<?php echo strtolower($evento['cat_evento'])?>" class="info-curso ocultar clearfix">
+                <?php endif;?>
 
+                    <div class="detalle-evento">
+                      <h3><?php echo $evento['nombre_evento']?> </h3>
+                      <p><i class="fas fa-clock"></i> <?php echo $evento['hora_evento']?> </p>
+                      <p><i class="fas fa-calendar-alt"></i> <?php echo $evento['fecha_evento']?></p>
+                      <p><i class="fas fa-user"></i> <?php echo $evento['nombre_invitado'] . ' ' . $evento['apellido_invitado']?></p>
+                    </div>
 
-            <div id="conferencias" class="info-curso ocultar clearfix">
-              <div class="detalle-evento">
-                <h3>Como ser Freelancer</h3>
-                <p><i class="fas fa-clock"></i> 10:00 hrs</p>
-                <p><i class="fas fa-calendar-alt"></i> 10 de Diciembre</p>
-                <p><i class="fas fa-user"></i> Victor Manuel Ruiz</p>
-              </div>
-
-              <div class="detalle-evento">
-                <h3>Tecnologías del Futuro</h3>
-                <p><i class="fas fa-clock"></i> 17:00 hrs</p>
-                <p><i class="fas fa-calendar-alt"></i> 10 de Diciembre</p>
-                <p><i class="fas fa-user"></i> Victor Manuel Ruiz</p>
-              </div>
-
-              <a href="#" class="btn right">Ver todos</a>
-
-            </div> <!-- Cierre info curso -->
+                <?php if($i % 2 == 1): ?>
+                  <a href="calendaio.php" class="btn right">Ver todos</a>
+                  </div> <!-- Cierre info curso -->
+                <?php endif;?>
+            
+              <?php $i++; ?>
+              <?php endforeach; ?>
+              <?php $resultado->free();?>
+            <?php } while ($conn->more_results() && $conn->next_result());?>
 
 
-            <div id="seminarios" class="info-curso ocultar clearfix">
-              <div class="detalle-evento">
-                <h3>Diseño UI/UX para moviles</h3>
-                <p><i class="fas fa-clock"></i> 17:00 hrs</p>
-                <p><i class="fas fa-calendar-alt"></i> 10 de Diciembre</p>
-                <p><i class="fas fa-user"></i> Victor Manuel Ruiz</p>
-              </div>
-
-              <div class="detalle-evento">
-                <h3>Aprende a programar en una mañana</h3>
-                <p><i class="fas fa-clock"></i> 19:00 hrs</p>
-                <p><i class="fas fa-calendar-alt"></i> 10 de Diciembre</p>
-                <p><i class="fas fa-user"></i> Victor Manuel Ruiz</p>
-              </div>
-
-              <a href="#" class="btn right">Ver todos</a>
-
-            </div> <!-- Cierre info curso -->
-
-
+            
           </div> <!-- Cierre programa evento -->
         </div> <!-- Cierre contenedor -->
       </div> <!-- Cierre contenido-programa -->

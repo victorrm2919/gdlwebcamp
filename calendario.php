@@ -17,7 +17,7 @@
        $sql .= "ORDER By evento_id";
        $resultado = $conn->query($sql);  /* consulta a base de datos */
     } catch (Exception $e) {
-        echo $e->getMessage();  /* mensaje de error */
+        $error = $e->getMessage();  /* mensaje de error */
     }
     ?>
 
