@@ -95,7 +95,7 @@
                     </div>
 
                 <?php if($i % 2 == 1): ?>
-                  <a href="calendaio.php" class="btn right">Ver todos</a>
+                  <a href="calendario.php" class="btn right">Ver todos</a>
                   </div> <!-- Cierre info curso -->
                 <?php endif;?>
             
@@ -221,7 +221,7 @@
     <div class="contenido-newsletter contenedor">
         <p>Registrate al Newsletter:</p>
         <h3>SitioConferencias</h3>
-        <a href="#" class="btn transparent">Registro</a>
+        <a href="#mc_embed_signup" class="newlestter-info btn transparent">Registro</a>
     </div><!-- Contenido -->
   </div><!-- Newsletter -->
 

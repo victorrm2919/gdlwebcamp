@@ -50,6 +50,9 @@
       etiquetas = document.getElementById('etiquetas'),
       regalo = document.getElementById('regalo');
 
+
+      botonRegistro.disabled = true;
+
       //Calculo de montos en resumen
         calcular.addEventListener('click', calcularMontos);
 
@@ -105,13 +108,13 @@
         }
 
         switch (regalo.value) {
-          case 'ETI':
+          case '2':
             listadoProductos.push('REGALO: Etiquetas');
             break;
-          case 'PUL':
+          case '1':
             listadoProductos.push('REGALO: Pulsera');
             break;
-          case 'PLU':
+          case '3':
             listadoProductos.push('REGALO: Plumas');
             break;
         }
@@ -124,7 +127,10 @@
         }
 
         total.innerHTML = `$${totalPago.toFixed(2)}`;
-      }
+
+        botonRegistro.disabled = false;
+        document.getElementById('total_pedido').value = totalPago;
+      } 
     }
 
     function mostrarDias(event) {
@@ -264,4 +270,6 @@ $('.registro .navegacion-principal a:contains("Reservaciones")').addClass('activ
   //Colorbox
 
   $('.invitado-info').colorbox({inline:true, width:'50%'});
+  $('.newlestter-info').colorbox({inline:true, width:'50%'});
+
 })
