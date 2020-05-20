@@ -66,7 +66,7 @@
     <div class="contenido-barra contenedor">
       <div class="logo">
        <a href="index.php">
-        <img src="img/logo.svg" alt="logo">
+          <h1 class="nombre-sitio">SitioConferencias</h1>
        </a>
       </div>
 

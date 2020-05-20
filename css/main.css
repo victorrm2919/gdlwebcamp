@@ -337,7 +337,18 @@
     background-color: #353535;
     padding: 2rem 0;
   }
+   /* ************************************************************* */
+  .barra a {
+    text-decoration: none;
+  }
+
+  .barra a h1 {
+    color: #fff !important;
+    font-size: 3rem !important;
+  }
   
+     /* ************************************************************* */
+
   .fixed {
     position: fixed;
     width: 100%;
