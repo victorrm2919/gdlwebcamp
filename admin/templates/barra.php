@@ -27,17 +27,18 @@
       </div>
     </form>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+<!-- Right navbar links -->
+<ul class="navbar-nav ml-auto">
       <!-- Notifications Dropdown Menu -->
+
       <li class="nav-item dropdown user-menu">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-          <span>Hola: <?php echo $_SESSION['usuario']?></span>
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <span>Hola: <?php echo $_SESSION['nombre'] ?></span>
         </a>
 
-        <div class="dropdown-menu dropdown-menu-lg-right">
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-footer">
-              <button type="button" class="btn btn-block btn-outline-primary btn-sm">Ajustes</button>
+              <button type="button" class="btn btn-block btn-outline-primary btn-sm" id="ajustes" data-id="<?php echo $_SESSION['id'] ?>">Ajustes</button>
               <button type="button" class="btn btn-block btn-outline-primary btn-sm" id="cerrar-sesion">Cerrar Sesión</button>
           </div>
         </div>

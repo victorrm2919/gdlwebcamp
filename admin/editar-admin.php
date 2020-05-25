@@ -1,9 +1,26 @@
 <?php
 
 include 'functions/funciones.php';
+$id_admin = $_GET['id'];
+
+if (!filter_var($id_admin, FILTER_VALIDATE_INT)) {
+
+  die("Error en los datos solicitados");
+ 
+}
 include 'templates/header.php';
 include 'templates/barra.php';
 include 'templates/navegacion.php';
+
+
+/*  */
+try {
+  $info= $conn->query("SELECT * FROM admins WHERE id = $id_admin");
+  $admin = $info->fetch_assoc();
+} catch (Exception $e) {
+  $error = $e->getMessage();
+  echo `<div class="info-box bg-danger"> Hubo un error!!: $error</div>`;
+}
 
 ?>
 
@@ -14,7 +31,7 @@ include 'templates/navegacion.php';
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Creacion de Administradores</h1>
+          <h1>Edición de Administradores</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -28,34 +45,34 @@ include 'templates/navegacion.php';
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Crear Administrador</h3>
+            <h3 class="card-title">Editar Administrador</h3>
           </div>
           <div class="card-body">
-            <form class="form-horizontal" name="crear-admin" id="crear-admin" method="post" action="modelo-admin.php">
+            <form class="form-horizontal" name="guardar-registro" id="guardar-registro" method="post" action="modelo-admin.php">
               <div class="card-body">
                 <div class="form-group row">
                   <label for="usuario" class="col-sm-2 col-form-label">Usuario:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="usuario" placeholder="Usuario" name="usuario" required>
+                    <input type="text" class="form-control" id="usuario" placeholder="Usuario" name="usuario" value="<?php echo $admin['usuario'] ?>"> 
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo" name="nombre" required>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo" name="nombre" value="<?php echo $admin['nombre'] ?>">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="password" class="col-sm-2 col-form-label">Password:</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="password" class="col-sm-2 col-form-label">Repetir Password:</label>
                   <div class="col-sm-10">
                     <input type="password" class="form-control" id="repetir-password" placeholder="Password"
-                      name="repetir-password" required>
+                      name="repetir-password">
                     <div id="resultado-password" class="invalid-feedback">
                       Las contraseñas no coinciden
                     </div>
@@ -64,8 +81,9 @@ include 'templates/navegacion.php';
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <input type="hidden" name="registro" value="nuevo">
-                <button type="submit" class="btn btn-primary" id="crear-registro">Añadir</button>
+                <input type="hidden" name="registro" value="actualizar">
+                <input type="hidden" name="id_registro" value="<?php echo $admin['id'] ?>">
+                <button type="submit" class="btn btn-primary" id="enviar-registro">Actualizar</button>
               </div>
               <!-- /.card-footer -->
             </form>

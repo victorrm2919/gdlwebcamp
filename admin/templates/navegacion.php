@@ -9,12 +9,20 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+      <div class="user-panel mt-3 pt-1 pb-3 mb-3 d-flex align-items-md-center">
         <div class="image">
-          <img src="img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <?php 
+          
+          $nombre = $_SESSION['nombre']; 
+          $pLetra = $nombre[0];
+          $uLetra = substr($nombre, strpos($nombre, ' ')+1,1);
+          
+          ?>
+          <span class="img-circle bg-gray-light p-sm-2 mr-1"><?php echo $pLetra.$uLetra?></span>
         </div>
-        <div class="info">
-          <a href="#" class="d-block"><?php echo $_SESSION['usuario']?></a> 
+        <div class="info px-1">
+          <a href="#" class="d-block"><?php echo $_SESSION['nombre']?></a>
         </div>
       </div>
 
@@ -69,10 +77,11 @@
                 </a>
               </li>
             </ul>
-            <!-- Fin Eventos -->
+          </li>
+          <!-- Fin Eventos -->
 
 
-            <!--Categoria Eventos -->
+          <!--Categoria Eventos -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -95,9 +104,10 @@
                 </a>
               </li>
             </ul>
-            <!-- Fin Categoria Eventos -->
+          </li>
+          <!-- Fin Categoria Eventos -->
 
-            <!--Invitados -->
+          <!--Invitados -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -120,9 +130,10 @@
                 </a>
               </li>
             </ul>
-            <!-- Fin Invitados -->
+          </li>
+          <!-- Fin Invitados -->
 
-            <!--Usuarios Registrados -->
+          <!--Usuarios Registrados -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-address-card"></i>
@@ -145,9 +156,11 @@
                 </a>
               </li>
             </ul>
-            <!-- Fin Usuarios Registrados -->
+          </li>
+          <!-- Fin Usuarios Registrados -->
 
-            <!--Administradores -->
+          <?php if($_SESSION['nivel'] == 1): ?>
+          <!--Administradores -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-cog"></i>
@@ -158,7 +171,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="lista-admin.php" class="nav-link">
                   <i class="fas fa-list-alt nav-icon"></i>
                   <p>Ver Todos</p>
                 </a>
@@ -170,10 +183,12 @@
                 </a>
               </li>
             </ul>
-            <!-- Fin Administradores -->
+          </li>
+          <!-- Fin Administradores -->
+          <?php endif; ?>
 
-            <!--Testimoniales -->
-            <li class="nav-item has-treeview">
+          <!--Testimoniales -->
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-comments"></i>
               <p>
@@ -195,7 +210,8 @@
                 </a>
               </li>
             </ul>
-            <!-- Fin Testimoniales -->
+          </li>
+          <!-- Fin Testimoniales -->
 
         </ul>
       </nav>

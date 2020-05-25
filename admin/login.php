@@ -19,7 +19,7 @@ if ($_GET['cerrar_sesion']) {  //valida que se halla dado click en cerrar sessio
     <div class="card-body login-card-body">
       <p class="login-box-msg">Iniciar Sesión</p>
 
-      <form method="post" action="insertar-admin.php" name="login-admin-form" id="login-admin">
+      <form method="post" action="login-admin.php" name="login-admin-form" id="login-admin">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Usuario" name="usuario" id="usuario">
           <div class="input-group-append">
