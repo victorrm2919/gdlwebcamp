@@ -13,7 +13,7 @@ require 'includes/paypal.php'
   <h2>Resumen Registro</h2>
 
   <?php 
-    $paymentId = $_GET{'paymentId'};
+    $paymentId = $_GET['paymentId'];
     $id_pago = (int) $_GET['id_pago'];
     $pagado = 1;
 
