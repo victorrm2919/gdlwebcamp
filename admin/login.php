@@ -21,7 +21,7 @@ if ($_GET['cerrar_sesion']) {  //valida que se halla dado click en cerrar sessio
 
       <form method="post" action="login-admin.php" name="login-admin-form" id="login-admin">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Usuario" name="usuario" id="usuario">
+          <input type="text" class="form-control" placeholder="Usuario" name="usuario" id="usuario" autocomplete='off'>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -29,10 +29,10 @@ if ($_GET['cerrar_sesion']) {  //valida que se halla dado click en cerrar sessio
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+          <input type="password" class="form-control" placeholder="Password" name="password" id="password" autocomplete='off'>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span class="fas fa-key"></span>
             </div>
           </div>
         </div>

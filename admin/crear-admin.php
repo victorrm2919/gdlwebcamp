@@ -30,32 +30,54 @@ include 'templates/navegacion.php';
           <div class="card-header">
             <h3 class="card-title">Crear Administrador</h3>
           </div>
-          <div class="card-body">
-            <form class="form-horizontal" name="crear-admin" id="crear-admin" method="post" action="modelo-admin.php">
+            <form class="form-horizontal text-center" name="crear-registro" id="crear-registro" method="post" action="modelo-admin.php">
               <div class="card-body">
                 <div class="form-group row">
-                  <label for="usuario" class="col-sm-2 col-form-label">Usuario:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="usuario" placeholder="Usuario" name="usuario" required>
+                  <label for="usuario" class="col-sm-3 col-form-label">Usuario:</label>
+                  <div class="col-sm-9 input-group">
+                    <input type="text" class="form-control" id="usuario" placeholder="Usuario" name="usuario" required autocomplete='off'>
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo" name="nombre" required>
+                  <label for="nombre" class="col-sm-3 col-form-label">Nombre:</label>
+                  <div class="col-sm-9 input-group">
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo" name="nombre"
+                      required autocomplete='off'>
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="password" class="col-sm-2 col-form-label">Password:</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                  <label for="password" class="col-sm-3 col-form-label">Password:</label>
+                  <div class="col-sm-9 input-group">
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                      required autocomplete='off'>
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fas fa-key"></i>
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="password" class="col-sm-2 col-form-label">Repetir Password:</label>
-                  <div class="col-sm-10">
+                  <label for="repetir-password" class="col-sm-3 col-form-label">Confirmar Password:</label>
+                  <div class="col-sm-9 input-group">
                     <input type="password" class="form-control" id="repetir-password" placeholder="Password"
-                      name="repetir-password" required>
+                      name="repetir-password" required autocomplete='off'>
+
+                      <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fas fa-key"></i>
+                      </span>
+                    </div>
                     <div id="resultado-password" class="invalid-feedback">
                       Las contraseñas no coinciden
                     </div>
@@ -63,14 +85,12 @@ include 'templates/navegacion.php';
                 </div>
               </div>
               <!-- /.card-body -->
-              <div class="card-footer">
+              <div class="card-footer text-right">
                 <input type="hidden" name="registro" value="nuevo">
-                <button type="submit" class="btn btn-primary" id="crear-registro">Añadir</button>
+                <button type="submit" class="btn btn-primary" id="btn-crear-registro-admin" disabled>Añadir</button>
               </div>
               <!-- /.card-footer -->
             </form>
-          </div>
-          <!-- /.card-body -->
         </div>
         <!-- /.card -->
 

@@ -34,7 +34,7 @@ include 'templates/navegacion.php';
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="registros" class="table table-bordered table-striped">
+              <table id="registros" class="table table-bordered table-striped text-center">
                 <thead>
                   <tr>
                     <th>Usuario</th>

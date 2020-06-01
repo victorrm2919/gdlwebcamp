@@ -13,7 +13,7 @@ include 'templates/barra.php';
 include 'templates/navegacion.php';
 
 
-/*  */
+/* Validacion de info */
 try {
   $info= $conn->query("SELECT * FROM admins WHERE id = $id_admin");
   $admin = $info->fetch_assoc();
@@ -47,8 +47,7 @@ try {
           <div class="card-header">
             <h3 class="card-title">Editar Administrador</h3>
           </div>
-          <div class="card-body">
-            <form class="form-horizontal" name="guardar-registro" id="guardar-registro" method="post" action="modelo-admin.php">
+            <form class="form-horizontal guardar-registro-admin text-center" name="guardar-registro" id="guardar-registro" method="post" action="modelo-admin.php">
               <div class="card-body">
                 <div class="form-group row">
                   <label for="usuario" class="col-sm-2 col-form-label">Usuario:</label>
@@ -80,15 +79,14 @@ try {
                 </div>
               </div>
               <!-- /.card-body -->
-              <div class="card-footer">
+              <div class="card-footer text-right">
                 <input type="hidden" name="registro" value="actualizar">
+                <input type="hidden" name="nivel" value="<?php echo $_SESSION['nivel'] ?>">
                 <input type="hidden" name="id_registro" value="<?php echo $admin['id'] ?>">
-                <button type="submit" class="btn btn-primary" id="enviar-registro">Actualizar</button>
+                <button type="submit" class="btn btn-primary" id="btn-enviar-registro-admin">Actualizar</button>
               </div>
               <!-- /.card-footer -->
             </form>
-          </div>
-          <!-- /.card-body -->
         </div>
         <!-- /.card -->
 

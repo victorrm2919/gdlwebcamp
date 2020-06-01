@@ -1,27 +1,27 @@
 <?php 
 include 'functions/funciones.php';
-$usuario = $_POST['usuario'];
-$nombre = $_POST['nombre'];
-$pass = $_POST['password'];
+$nombre_evento = $_POST['titulo-evento'];
+$fecha_evento = date('Y-m-d', strtotime($_POST['fecha-evento']));
+$hora_evento = date('H:i:s', strtotime($_POST{'hora-evento'}));
+$cat_evento = $_POST['categoria-evento'];
+$invitado = $_POST['invitado'];
 
 if ($_POST['registro'] == 'nuevo') {
-    $opciones = array('costo' => 12);
-    $password = password_hash($pass, PASSWORD_BCRYPT, $opciones);
 
     try {
 
-        $stmt = $conn->prepare("INSERT INTO admins (usuario, nombre, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $usuario, $nombre, $password);
+        $stmt = $conn->prepare("INSERT INTO eventos (nombre_evento, fecha_evento, hora_evento, id_cat_evento, id_inv) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssii", $nombre_evento, $fecha_evento, $hora_evento, $cat_evento, $invitado);
         $stmt->execute();
         if($stmt->affected_rows > 0 ){
             $respuesta = array(
                 'respuesta' => 'correcto',
-                'tipo' => 'Administrador'
+                'tipo' => 'Evento'
             );
         }else {
             $respuesta = array(
                 'respuesta' => 'Error',
-                'tipo' => 'Administrador'
+                'tipo' => 'Evento'
             );
         }
         $stmt->close();
@@ -35,30 +35,19 @@ if ($_POST['registro'] == 'nuevo') {
 
 if ($_POST['registro'] == 'actualizar') {
     try {
-        $id = $_POST['id_registro'];
-            
-        if(!empty($pass)) {
-            //si se envia actualizacion de pasword
-            $opciones = array('costo' => 12);
-            $password = password_hash($pass, PASSWORD_BCRYPT, $opciones);
-            $stmt = $conn->prepare("UPDATE admins SET usuario = ?, nombre = ?, password = ?, editado = NOW() WHERE id = ?");
-            $stmt->bind_param("sssi", $usuario, $nombre, $password, $id);
-        } else {
-            //sin actualizacion de password
-            $stmt = $conn->prepare("UPDATE admins SET usuario = ?, nombre = ?, editado = NOW() WHERE id = ?");
-            $stmt->bind_param("ssi", $usuario, $nombre, $id);
-        }
-        
+        $id = $_POST['id_registro'];   
+        $stmt = $conn->prepare("UPDATE eventos SET nombre_evento = ?, fecha_evento = ?, hora_evento = ?, id_cat_evento = ?, id_inv = ?, editado = NOW() WHERE evento_id = ?");
+        $stmt->bind_param("sssiii", $nombre_evento, $fecha_evento, $hora_evento, $cat_evento, $invitado, $id);
         $stmt->execute();
         if($stmt->affected_rows > 0 ){
             $respuesta = array(
                 'respuesta' => 'correcto',
-                'nivel' => $_POST['nivel'],
-                'tipo' => 'Administrador'
+                'tipo' => 'Evento'
             );
         }else {
             $respuesta = array(
-                'respuesta' => 'Error'
+                'respuesta' => 'Error',
+                'tipo' => 'Evento'
             );
         }
         $stmt->close();
@@ -73,17 +62,19 @@ if ($_POST['registro'] == 'eliminar'){
     $id = $_POST['id'];
 
     try {
-        $stmt = $conn->prepare("DELETE FROM admins WHERE id = ?");
+        $stmt = $conn->prepare("DELETE FROM eventos WHERE evento_id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         if($stmt->affected_rows > 0 ){
             $respuesta = array(
                 'respuesta' => 'correcto',
-                'id' => $id
+                'id' => $id,
+                'tipo' => 'Evento'
             );
         }else {
             $respuesta = array(
-                'respuesta' => 'Error'
+                'respuesta' => 'Error',
+                'tipo' => 'Evento'
             );
         }
         $stmt->close();
@@ -93,5 +84,4 @@ if ($_POST['registro'] == 'eliminar'){
     }
     die(json_encode($respuesta));
 }
-
 
