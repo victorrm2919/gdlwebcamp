@@ -22,7 +22,7 @@
           <span class="img-circle bg-gray-light p-sm-2 mr-1"><?php echo $pLetra.$uLetra?></span>
         </div>
         <div class="info px-1">
-          <a href="#" class="d-block"><?php echo $_SESSION['nombre']?></a>
+          <a class="d-block"><?php echo $_SESSION['nombre']?></a>
         </div>
       </div>
 
@@ -92,13 +92,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="lista-categoria.php" class="nav-link">
                   <i class="fas fa-list-alt nav-icon"></i>
                   <p>Ver Todos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="crear-categoria.php" class="nav-link">
                   <i class="fas fa-plus-circle nav-icon"></i>
                   <p>Agregar</p>
                 </a>

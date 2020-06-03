@@ -11,11 +11,19 @@ $(function () {
       dataType: "json",
       success: function (data) {
         if (data.respuesta === 'correcto') {
-
+          let crear, articulo;
+          if (data.tipo == 'Categoria') {
+            crear = 'creada';
+            articulo = 'La';
+          } else {
+            crear = 'creado';
+              articulo = 'El';
+          }
+          
           Swal.fire({
             icon: 'success',
-            title: `${data.tipo} creado`,
-            text: `El ${data.tipo}  se creo correctamente`,
+            title: `${data.tipo} ${crear}`,
+            text: `${articulo} ${data.tipo} se creo correctamente`,
             showConfirmButton: false,
             timer: 1500,
             timerProgressBar: true,
@@ -54,12 +62,20 @@ $(function () {
       data: datos,
       dataType: "json",
       success: function (data) {
+        let actualiza, articulo;
+          if (data.tipo == 'Categoria') {
+            actualiza = 'actualizada';
+            articulo = 'La';
+          } else {
+            actualiza = 'actualizado';
+            articulo = 'El';
+          }
         console.log(data);
         if (data.respuesta === 'correcto') {
           Swal.fire({
             icon: 'success',
-            title: `${data.tipo} actualizado`,
-            text: `El ${data.tipo} se actualizo correctamente`,
+            title: `${data.tipo} ${actualiza}`,
+            text: `${articulo} ${data.tipo} se actualizo correctamente`,
             showConfirmButton: false,
             timer: 1500,
             onClose: () => {
@@ -68,6 +84,9 @@ $(function () {
               }
               if (data.tipo == 'Evento') {
                 window.location.href = 'lista-evento.php'
+              }
+              if (data.tipo == 'Categoria') {
+                window.location.href = 'lista-categoria.php'
               }
             }
           })
@@ -114,11 +133,21 @@ $(function () {
           success: function (data) {
 
             if (data.respuesta == 'correcto') {
+
+              let borrar, articulo;
+              if (data.tipo == 'Categoria') {
+                borrar = 'eliminada';
+                articulo = 'La';
+              } else {
+                borrar = 'eliminado';
+                articulo = 'El';
+              }
+
               $('[data-id="' + data.id + '"]').parents('tr').remove();
 
               Swal.fire({
-                title: 'Borrado!',
-                text: `El ${data.tipo} ha sido borrado correctamente`,
+                title: 'Eliminado!',
+                text: `${articulo} ${data.tipo} ha sido ${borrar} correctamente`,
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 1500,

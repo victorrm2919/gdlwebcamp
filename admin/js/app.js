@@ -38,6 +38,12 @@ $(function () {
     allowClear: true
   });
 
+  /* iconpicker */
+  $('#icono').iconpicker();
+  $("div.iconpicker-popover").addClass('tab-pane show active');
+  if($(".iconpicker-component i").attr('class') == '') {
+    $(".iconpicker-component i").addClass('fas fa-address-book')
+  }
   /* *********************** /Librerias *********************** */
 
 

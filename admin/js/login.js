@@ -8,7 +8,10 @@ $(function () {
           Swal.fire({
             icon: 'error',
             title: 'Hubo un error',
-            text: 'El usuario y password son obligatorios'
+            text: 'El usuario y password son obligatorios',
+            onRender: () => {
+              $('body').attr('style', 'height: 100vh !important')
+            }
           })
         } else {
 
@@ -31,7 +34,7 @@ $(function () {
                     $('body').attr('style', 'height: 100vh !important')
                   },
                   onClose: () => {
-                    window.location.href = 'admin-area.php';
+                    window.location.href = 'index.php';
                   }
                 })
               } else {

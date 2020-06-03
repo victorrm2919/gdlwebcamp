@@ -12,7 +12,7 @@ include 'templates/navegacion.php';
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Administradores</h1>
+            <h1>Categorias</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -30,33 +30,33 @@ include 'templates/navegacion.php';
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Lista de Administradores</h3>
+              <h3 class="card-title">Lista de Categorias</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="registros" class="table table-bordered table-striped text-center">
                 <thead>
                   <tr>
-                    <th>Usuario</th>
                     <th>Nombre</th>
+                    <th>Icono</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php 
                   
-                  $sql = "SELECT id, usuario, nombre FROM admins";
+                  $sql = "SELECT * FROM categoria_evento";
                   $resultado = $conn->query($sql);
 
-                  while ($admin = $resultado->fetch_assoc()):?>
+                  while ($categoria = $resultado->fetch_assoc()):?>
                     <tr>
-                      <td class="align-middle"><?php echo $admin ['usuario'] ?></dh>
-                      <td class="align-middle"><?php echo $admin ['nombre'] ?></td>
+                      <td class="align-middle"><?php echo $categoria ['cat_evento'] ?></dh>
+                      <td class="align-middle"><i class="<?php echo $categoria ['icono'] ?>"></i></td>
                       <td class="align-middle">
-                        <a href="editar-admin.php?id=<?php echo $admin ['id'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
+                        <a href="editar-categoria.php?id=<?php echo $categoria ['id_categoria'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
                           <i class="fas fa-edit"></i>
                         </a>
-                        <a href="#" data-id="<?php echo $admin ['id'] ?>" data-tipo="admin" class="btn btn-sm bg-gradient-maroon m-1 borrar-registro">
+                        <a href="#" data-id="<?php echo $categoria ['id_categoria'] ?>" data-tipo="categorias" class="btn btn-sm bg-gradient-maroon m-1 borrar-registro">
                           <i class="fas fa-trash-alt"></i>
                         </a>
                       </td>
@@ -67,8 +67,8 @@ include 'templates/navegacion.php';
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Usuario</th>
                     <th>Nombre</th>
+                    <th>Icono</th>
                     <th>Acciones</th>
                   </tr>
                 </tfoot>

@@ -32,7 +32,7 @@
                     'fecha' => $eventos['fecha_evento'],
                     'hora' => $eventos['hora_evento'],
                     'categoria' => $eventos['cat_evento'],
-                    'icono'  => 'fa '. $eventos['icono'],
+                    'icono'  => $eventos['icono'],
                     'invitado' => $eventos['nombre_invitado'] . " " . $eventos['apellido_invitado']
                 );
 

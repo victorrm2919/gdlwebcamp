@@ -38,7 +38,7 @@
                 <?php while ($cat = $resultado->fetch_assoc()) {
                   $categoria = $cat['cat_evento'];
                   $cat_icono = $cat['icono']; ?>
-                  <a href="#<?php echo strtolower($categoria)?>"><i class="fas <?php echo $cat_icono?>"></i><?php echo $categoria?> </a>
+                  <a href="#<?php echo strtolower($categoria)?>"><i class="<?php echo $cat_icono?>"></i><?php echo $categoria?> </a>
                 <?php }?>
             </nav>
 
