@@ -2,11 +2,13 @@ $(function () {
 
   /* *********************** Librerias *********************** */
   //datatable
+  let ultimaCol = $('#registros thead th').length - 1
     $('#registros').DataTable({
       "responsive": true,
       "autoWidth": false,
       "columnDefs": [
-        { "width": "35%", "targets": 0 }
+        { "width": "25%", "targets": 0 },
+        { "width": "15%", "targets": ultimaCol }
       ],
       "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
@@ -44,6 +46,8 @@ $(function () {
   if($(".iconpicker-component i").attr('class') == '') {
     $(".iconpicker-component i").addClass('fas fa-address-book')
   }
+
+  bsCustomFileInput.init();
   /* *********************** /Librerias *********************** */
 
 
