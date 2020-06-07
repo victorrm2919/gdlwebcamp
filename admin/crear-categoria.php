@@ -21,7 +21,7 @@ include 'templates/navegacion.php';
   </section>
 
   <div class="row">
-    <div class="col-md-8 m-auto">
+    <div class="col-xl-8 m-xl-auto m-3">
       <!-- Main content -->
       <section class="content">
 
@@ -30,7 +30,7 @@ include 'templates/navegacion.php';
           <div class="card-header">
             <h3 class="card-title">Crear Categoria</h3>
           </div>
-            <form class="form-horizontal text-center" name="crear-registro" id="crear-registro" method="post" action="modelo-categorias.php">
+            <form class="form-horizontal text-center crear-registro-categoria" name="crear-registro" id="guardar-registro" method="post" action="modelo-categorias.php">
               <div class="card-body">
                 <div class="form-group row">
                   <label for="nombre" class="col-sm-3 col-form-label">Nombre:</label>
@@ -54,7 +54,7 @@ include 'templates/navegacion.php';
               <!-- /.card-body -->
               <div class="card-footer text-right">
                 <input type="hidden" name="registro" value="nuevo">
-                <button type="submit" class="btn btn-primary" id="btn-crear-registro-categoria">Añadir</button>
+                <button type="submit" class="btn btn-primary" id="btn-crear-registro-categoria" disabled>Añadir</button>
               </div>
               <!-- /.card-footer -->
             </form>

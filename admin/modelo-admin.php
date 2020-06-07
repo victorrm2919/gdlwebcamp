@@ -16,12 +16,14 @@ if ($_POST['registro'] == 'nuevo') {
         if($stmt->affected_rows > 0 ){
             $respuesta = array(
                 'respuesta' => 'correcto',
-                'tipo' => 'Administrador'
+                'tipo' => 'Administrador',
+                'registro' => 'Nuevo'
             );
         }else {
             $respuesta = array(
                 'respuesta' => 'Error',
-                'tipo' => 'Administrador'
+                'tipo' => 'Administrador',
+                'registro' => 'Nuevo'
             );
         }
         $stmt->close();
@@ -54,12 +56,14 @@ if ($_POST['registro'] == 'actualizar') {
             $respuesta = array(
                 'respuesta' => 'correcto',
                 'nivel' => $_POST['nivel'],
-                'tipo' => 'Administrador'
+                'tipo' => 'Administrador',
+                'registro' => 'Actualizar'
             );
         }else {
             $respuesta = array(
                 'respuesta' => 'Error',
-                'tipo' => 'Administrador'
+                'tipo' => 'Administrador',
+                'registro' => 'Actualizar'
             );
         }
         $stmt->close();
@@ -81,12 +85,14 @@ if ($_POST['registro'] == 'eliminar'){
             $respuesta = array(
                 'respuesta' => 'correcto',
                 'id' => $id,
-                'tipo' => 'Administrador'
+                'tipo' => 'Administrador',
+                'registro' => 'Eliminar'
             );
         }else {
             $respuesta = array(
                 'respuesta' => 'Error',
-                'tipo' => 'Administrador'
+                'tipo' => 'Administrador',
+                'registro' => 'Eliminar'
             );
         }
         $stmt->close();

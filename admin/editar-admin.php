@@ -38,7 +38,7 @@ try {
   </section>
 
   <div class="row">
-    <div class="col-md-8 m-auto">
+    <div class="col-xl-8 m-xl-auto m-3">
       <!-- Main content -->
       <section class="content">
 

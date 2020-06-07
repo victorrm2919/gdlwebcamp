@@ -53,9 +53,9 @@ include 'templates/navegacion.php';
                     <tr>
                       <td class="align-middle"><?php echo $invitado['nombre_invitado'] . ' ' . $invitado['apellido_invitado'] ?></dh>
                       <td class="align-middle"><?php echo $invitado['descripcion'] ?></td>
-                      <td class="align-middle"><?php echo $invitado['url_imagen'] ?></td>
+                      <td class="align-middle"><img src="../img/invitados/<?php echo $invitado['url_imagen'] ?>" width="200px"></td>
                       <td class="align-middle">
-                        <a href="editar-invitado.php?id=<?php echo $invitado['id_invitado'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
+                        <a href="editar-invitado.php?id=<?php echo $invitado['invitado_id'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
                           <i class="fas fa-edit"></i>
                         </a>
                         <a href="#" data-id="<?php echo $invitado['invitado_id'] ?>" data-tipo="invitado" class="btn btn-sm bg-gradient-maroon m-1 borrar-registro">

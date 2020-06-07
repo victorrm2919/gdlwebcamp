@@ -1,57 +1,6 @@
 $(function () {
   /* -------------------------------------------Eventos-------------------------------------------  */
 
-  $('#crear-registro').on('submit', function (e) {
-    e.preventDefault();
-    let datos = $(this).serializeArray();
-    $.ajax({
-      type: $(this).attr('method'),
-      url: $(this).attr('action'),
-      data: datos,
-      dataType: "json",
-      success: function (data) {
-        if (data.respuesta === 'correcto') {
-          let crear, articulo;
-          if (data.tipo == 'Categoria') {
-            crear = 'creada';
-            articulo = 'La';
-          } else {
-            crear = 'creado';
-              articulo = 'El';
-          }
-          
-          Swal.fire({
-            icon: 'success',
-            title: `${data.tipo} ${crear}`,
-            text: `${articulo} ${data.tipo} se creo correctamente`,
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            onClose: () => {
-              $('#crear-registro')[0].reset();
-              if (data.tipo == 'Administrador') {crearAdmin()}
-              if (data.tipo == 'Evento') {crearEvento()}
-            }
-          });
-
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Hubo un error',
-            text: 'Valida los datos del formulario',
-            timer: 1500,
-            timerProgressBar: true,
-            onClose: () => {
-              if (data.tipo == 'Administrador') {
-                crearAdmin();
-              }
-            }
-          });
-        }
-      }
-    });
-  });
-
   $('#guardar-registro').on('submit', function (e) {
     e.preventDefault();
     let datos = $(this).serializeArray();
@@ -62,32 +11,56 @@ $(function () {
       data: datos,
       dataType: "json",
       success: function (data) {
-        let actualiza, articulo;
+        let registro, articulo, evento
+        if (data.registro == 'Nuevo') {
+         evento = 'creo';
           if (data.tipo == 'Categoria') {
-            actualiza = 'actualizada';
+            registro = 'creada';
             articulo = 'La';
           } else {
-            actualiza = 'actualizado';
+            registro = 'creado';
+              articulo = 'El';
+          }
+        }
+
+        if (data.registro == 'Actualizar') {
+          evento = 'actualizo';
+          if (data.tipo == 'Categoria') {
+            registro = 'actualizada';
+            articulo = 'La';
+          } else {
+            registro = 'actualizado';
             articulo = 'El';
           }
-        console.log(data);
+        }
+        
         if (data.respuesta === 'correcto') {
           Swal.fire({
             icon: 'success',
-            title: `${data.tipo} ${actualiza}`,
-            text: `${articulo} ${data.tipo} se actualizo correctamente`,
+            title: `${data.tipo} ${registro}`,
+            text: `${articulo} ${data.tipo} se ${evento} correctamente`,
             showConfirmButton: false,
             timer: 1500,
             onClose: () => {
-              if (data.tipo == 'Administrador') {
-                editarAdmin(data.nivel);
+
+              if (data.registro == 'Nuevo') {
+                $('#guardar-registro')[0].reset();
+                if (data.tipo == 'Administrador') {crearAdmin()}
+                if (data.tipo == 'Evento') {crearEvento()}
               }
-              if (data.tipo == 'Evento') {
-                window.location.href = 'lista-evento.php'
+
+              if (data.registro == 'Actualizar'){
+                if (data.tipo == 'Administrador') {
+                  editarAdmin(data.nivel);
+                }
+                if (data.tipo == 'Evento') {
+                  window.location.href = 'lista-evento.php'
+                }
+                if (data.tipo == 'Categoria') {
+                  window.location.href = 'lista-categoria.php'
+                }
               }
-              if (data.tipo == 'Categoria') {
-                window.location.href = 'lista-categoria.php'
-              }
+              
             }
           })
 
@@ -98,6 +71,13 @@ $(function () {
             text: 'Valida los datos del formulario',
             showConfirmButton: false,
             timer: 1500,
+            onClose: () => {
+              if (data.registro == 'Nuevo') {
+                if (data.tipo == 'Administrador') {
+                  crearAdmin();
+                }
+              }
+            }
           })
         }
       }
@@ -165,6 +145,53 @@ $(function () {
         });
       }
     })
+  });
+
+  $('#guardar-registro-archivo').on('submit', function (e) {
+    e.preventDefault();
+    let datos = new FormData(this);
+
+    $.ajax({
+      type: $(this).attr('method'),
+      url: $(this).attr('action'),
+      data: datos,
+      dataType: "json",
+      contentType: false,
+      processData: false,
+      async: true,
+      cache: false,
+      success: function (data) {
+        if (data.respuesta === 'correcto') {
+          
+          Swal.fire({
+            icon: 'success',
+            title: `${data.tipo} guardado`,
+            text: `El ${data.tipo} se guardo correctamente`,
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            onClose: () => {
+              if (data.registro == 'Nuevo') {
+                $('#guardar-registro-archivo')[0].reset();
+              }
+
+              if (data.registro == 'Actualizar') {
+                window.location.href = 'lista-invitados.php'
+              }
+            }
+          });
+
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un error',
+            text: 'Valida los datos del formulario',
+            timer: 1500,
+            timerProgressBar: true
+          });
+        }
+      }
+    });
   });
 
 });

@@ -14,12 +14,14 @@ if ($_POST['registro'] == 'nuevo') {
         if($stmt->affected_rows > 0 ){
             $respuesta = array(
                 'respuesta' => 'correcto',
-                'tipo' => 'Categoria'
+                'tipo' => 'Categoria',
+                'registro' => 'Nuevo'
             );
         }else {
             $respuesta = array(
                 'respuesta' => 'Error',
-                'tipo' => 'Categoria'
+                'tipo' => 'Categoria',
+                'registro' => 'Nuevo'
             );
         }
         $stmt->close();
@@ -41,12 +43,14 @@ if ($_POST['registro'] == 'actualizar') {
         if($stmt->affected_rows > 0 ){
             $respuesta = array(
                 'respuesta' => 'correcto',
-                'tipo' => 'Categoria'
+                'tipo' => 'Categoria',
+                'registro' => 'Actualizar'
             );
         }else {
             $respuesta = array(
                 'respuesta' => 'Error',
-                'tipo' => 'Categoria'
+                'tipo' => 'Categoria',
+                'registro' => 'Actualizar'
             );
         }
         $stmt->close();
@@ -68,12 +72,14 @@ if ($_POST['registro'] == 'eliminar'){
             $respuesta = array(
                 'respuesta' => 'correcto',
                 'id' => $id,
-                'tipo' => 'Categoria'
+                'tipo' => 'Categoria',
+                'registro' => 'Eliminar'
             );
         }else {
             $respuesta = array(
                 'respuesta' => 'Error',
-                'tipo' => 'Categoria'
+                'tipo' => 'Categoria',
+                'registro' => 'Eliminar'
             );
         }
         $stmt->close();

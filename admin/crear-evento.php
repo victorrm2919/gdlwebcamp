@@ -21,7 +21,7 @@ include 'templates/navegacion.php';
   </section>
 
   <div class="row">
-    <div class="col-md-8 m-auto">
+    <div class="col-xl-8 m-xl-auto m-3">
       <!-- Main content -->
       <section class="content">
 
@@ -30,7 +30,7 @@ include 'templates/navegacion.php';
           <div class="card-header">
             <h3 class="card-title">Crear Evento</h3>
           </div>
-            <form class="form-horizontal text-center crear-registro-evento" name="crear-registro" id="crear-registro" method="post"
+            <form class="form-horizontal text-center crear-registro-evento" name="crear-registro" id="guardar-registro" method="post"
               action="modelo-evento.php">
               <div class="card-body">
                 <div class="form-group row">

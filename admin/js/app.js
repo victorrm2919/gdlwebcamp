@@ -93,7 +93,14 @@ $(function () {
         activarBoton(1,1);
       }
   })
+  
+  function activarBoton(btnCrear = 1 , btnEnviar = 1) {
+    btnCrear == 1 ?  $('#btn-crear-registro-admin').attr('disabled', true) : $('#btn-crear-registro-admin').attr('disabled', false);
+    btnEnviar == 1 ? $('#btn-enviar-registro-admin').attr('disabled', true) : $('#btn-enviar-registro-admin').attr('disabled', false);
+  }
 
+
+  
   /* Eventos */
 
   $('.crear-registro-evento').on('input', function(e) {
@@ -104,9 +111,27 @@ $(function () {
     }
   })
 
-});
 
-function activarBoton(btnCrear = 1 , btnEnviar = 1) {
-  btnCrear == 1 ?  $('#btn-crear-registro-admin').attr('disabled', true) : $('#btn-crear-registro-admin').attr('disabled', false);
-  btnEnviar == 1 ? $('#btn-enviar-registro-admin').attr('disabled', true) : $('#btn-enviar-registro-admin').attr('disabled', false);
-}
+/* Categoria Evento */
+
+
+$('.crear-registro-categoria').on('input', function(e) {
+  if ($(e.target).val() == '') {
+    $('#btn-crear-registro-categoria').attr('disabled', true);
+  }else {
+    $('#btn-crear-registro-categoria').attr('disabled', false);
+  }
+})
+
+/* Invitados */
+
+$('.crear-registro-invitado').on('input', function(e) {
+  if ($(e.target).val() == '') {
+    $('#btn-crear-registro-invitado').attr('disabled', true);
+  }else {
+    $('#btn-crear-registro-invitado').attr('disabled', false);
+  }
+})
+
+
+});
