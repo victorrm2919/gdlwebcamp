@@ -6,7 +6,7 @@ define('URL_SITIO','http://localhost:8888/gdlwebcamp');
 
 $apiContext = new \PayPal\Rest\ApiContext(
     new \PayPal\Auth\OAuthTokenCredential(
-        'AflALVgpoZzjWKwFIPowparUw6VkcRBT2G4AFbmR-73NFy-NEdzQYPP92Ov2l7E42BBHkUvrHLsRoGi3', // ClienteID
-        'EMpGoY9cGSpuE0i6Aa4HQJERY3uimon1GmTXSUrKmXqoczbiZS8bZD9D1Kvekx4gM4hPoG5DWXY-c6Jh'  //secret
+        'AWHLK6npjnrjGbIGHzguqqMQAVbGHjDIMwS8mXfTGIXiRUeLLRluZcuT99M8fCdZWmUUxpaUMGz3wTXB', // ClienteID
+        'EE4FL5zh9qV5fYzhrZXqk71vYDD3vGuyxPUMiV2JugB4CPjeqrbXItjPiKoz-Hsemkf-DLci6L9KXTtn'  //secret
     )
 );

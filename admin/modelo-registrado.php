@@ -44,7 +44,7 @@ if ($_POST['registro'] == 'actualizar') {
     try {
         $id = $_POST['id_registro'];
             
-        $stmt = $conn->prepare("UPDATE registrados SET nombre_registrado = ?, apellido_registrado = ?, email_registrado = ?, fecha_registro = ?, pases_articulos = ?, talleres_registrados = ?, regalo = ?, total_pagado = ?, editado = NOW() WHERE id_registrado = ?");
+        $stmt = $conn->prepare("UPDATE registrados SET nombre_registrado = ?, apellido_registrado = ?, email_registrado = ?, fecha_registro = ?, pases_articulos = ?, talleres_registrados = ?, regalo = ?, total_pagado = ?, pagado = 1, editado = NOW() WHERE id_registrado = ?");
         $stmt->bind_param("ssssssisi", $nombre, $apellido, $email, $_POST['fecha_registro'], $pedido, $eventos, $regalo, $total, $id);
         $stmt->execute();
         if($stmt->affected_rows > 0 ){

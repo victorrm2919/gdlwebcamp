@@ -24,6 +24,9 @@ let table = $('#registros').DataTable({
     }
   });
   
+  if($('#registros').hasClass('registrados')) {
+    table.column(2).order('desc').draw();
+  }
 
   //Daterangepicker
   $('#fecha-evento').daterangepicker({

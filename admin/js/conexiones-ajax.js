@@ -93,8 +93,6 @@ $(function () {
     });
   });
 
-  $('.borrar-registro').on('click', borrarRegistro);
-
   $('#registros tbody').on('click', 'a.borrar-registro', borrarRegistro);
 
   $('#guardar-registro-archivo').on('submit', function (e) {
@@ -217,8 +215,8 @@ function crearAdmin() {
 }
 
 function crearEvento() {
-  $('#categoria-evento').empty();
-  $('#invitado').empty();
+  $('#categoria-evento').val(null).trigger('change');
+  $('#invitado').val(null).trigger('change');
 }
 
 function editarAdmin(nivel) {
@@ -235,5 +233,5 @@ function crearUsuario() {
   $('#total_pedido').removeAttr('value');
   $('.msjSeleccion').css('display', 'block');
   $('.contenido-dia').css('display', 'none');
-  $('#regalo').empty();
+  $('#regalo').val(null).trigger('change');
 }

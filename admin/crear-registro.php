@@ -145,7 +145,7 @@ include 'templates/navegacion.php';
                     $sql .= "ON eventos.id_cat_evento = categoria_evento.id_categoria ";
                     $sql .= "INNER JOIN invitados ";
                     $sql .= "ON eventos.id_inv = invitados.invitado_id ";
-                    $sql .= "ORDER By hora_evento, fecha_evento, evento_id";
+                    $sql .= "ORDER By hora_evento, evento_id, clave";
                     $resultado = $conn->query($sql);
                     } catch (Exception $e) {
                     echo $e->getMessage();

@@ -13,6 +13,7 @@ require 'includes/paypal.php'
   <h2>Resumen Registro</h2>
 
   <?php 
+   try {
     $paymentId = $_GET['paymentId'];
     $id_pago = (int) $_GET['id_pago'];
     $pagado = 1;
@@ -46,6 +47,11 @@ require 'includes/paypal.php'
       echo 'El pago no se realizo';
       echo '</div>';
     }          
+   } catch (Exception $e) {
+    echo '<div class="resultado error">';
+    echo $e->getMessage();
+    echo '</div>';
+   }
   ?>
 </section>
 
