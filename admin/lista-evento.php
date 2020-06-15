@@ -34,7 +34,7 @@ include 'templates/navegacion.php';
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="registros" class="table table-bordered table-striped text-center" style='width: 100%'>
+            <table id="registros" class="table table-bordered table-striped text-center display nowrap" style='width: 100%'>
               <thead>
 
                 <tr>
@@ -66,7 +66,7 @@ include 'templates/navegacion.php';
 
                   while ($evento = $resultado->fetch_assoc()):?>
                 <tr>
-                  <td class="text-left align-middle"><?php echo $evento ['nombre_evento'] ?></dh>
+                  <td class="text-left align-middle"><?php echo $evento ['nombre_evento'] ?></td>
                   <td class="align-middle"><?php echo $evento ['fecha_evento'] ?></td>
                   <td class="align-middle"><?php echo $evento ['hora_evento'] ?></td>
                   <td class="align-middle"><?php echo $evento ['cat_evento'] ?></td>

@@ -50,9 +50,9 @@ include 'templates/navegacion.php';
 
                   while ($admin = $resultado->fetch_assoc()):?>
                     <tr>
-                      <td class="align-middle"><?php echo $admin ['usuario'] ?></dh>
+                      <td class="align-middle"><?php echo $admin ['usuario'] ?></td>
                       <td class="align-middle"><?php echo $admin ['nombre'] ?></td>
-                      <td class="align-middle">
+                      <td class="align-middle botones">
                         <a href="editar-admin.php?id=<?php echo $admin ['id'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
                           <i class="fas fa-edit"></i>
                         </a>

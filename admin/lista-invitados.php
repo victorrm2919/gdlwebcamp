@@ -34,7 +34,7 @@ include 'templates/navegacion.php';
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="registros" class="table table-bordered table-striped text-center">
+              <table id="registros" class="table table-bordered table-striped text-center registros_inv" style="width:100%">
                 <thead>
                   <tr>
                     <th>Nombre</th>
@@ -51,7 +51,7 @@ include 'templates/navegacion.php';
 
                   while ($invitado = $resultado->fetch_assoc()):?>
                     <tr>
-                      <td class="align-middle"><?php echo $invitado['nombre_invitado'] . ' ' . $invitado['apellido_invitado'] ?></dh>
+                      <td class="align-middle"><?php echo $invitado['nombre_invitado'] . ' ' . $invitado['apellido_invitado'] ?></td>
                       <td class="align-middle"><?php echo $invitado['descripcion'] ?></td>
                       <td class="align-middle"><img src="../img/invitados/<?php echo $invitado['url_imagen'] ?>" width="200px"></td>
                       <td class="align-middle">

@@ -41,8 +41,7 @@
 
              <!-- imprime todos los eventos -->
 
-             <?php 
-                foreach ($calendario as $dia => $lista_eventos) { ?>
+             <?php foreach ($calendario as $dia => $lista_eventos) { ?>
                     <h3 class="titulo-dia">
                         <i class="fa fa-calendar"></i>
                         <?php 

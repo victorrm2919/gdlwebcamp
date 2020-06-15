@@ -93,6 +93,7 @@
   <script src="js/jquery.countdown.min.js"></script>  <!-- cuenta regresiva -->
   <script src="js/jquery.lettering.js"></script>  <!-- cambios de texto radicales -->
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>  <!-- mapa -->
+  <script src="js/cotizador.js"></script>  <!-- cotizador -->
 
   <script src="js/main.js"></script>
 

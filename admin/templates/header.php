@@ -30,8 +30,12 @@ include 'functions/sesiones.php';
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
   <!-- FontAwesome picker -->
   <link rel="stylesheet" href="css/fontawesome-iconpicker.css">
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
   <!-- Theme style -->
   <link rel="stylesheet" href="css/adminlte.min.css">
+  <!-- Estilos Propios -->
+  <link rel="stylesheet" href="css/main.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>

@@ -2,22 +2,27 @@
     function productos_json(&$boletos, &$camisas = 0, &$etiquetas = 0) /* & = paso por referencia */
     {
        $dias = array(0 => 'un_dia', 1 => 'pase_completo', 2 => 'pase_2dias');  //declarar llaves
+       unset($boletos['un_dia']['precio']);
+       unset($boletos['completo']['precio']);
+       unset($boletos['2dias']['precio']);
        $total_boletos = array_combine($dias, $boletos);  //comnbinacion de arrays
-       $json = array();   //cracion de array para json, simpre debe de ir en array para el encode
+       
+    //    $json = array();   //cracion de array para json, simpre debe de ir en array para el encode
 
         foreach($total_boletos as $key => $values):   //valida la cantidad de oletos
-            if((int) $values > 0):  //convierte valor a int
-                $json[$key] = (int) $values;    //agrega a json con Key de boletos
+            if((int) $values['cantidad'] > 0):  //convierte valor a int
+                $json[$key] = (int) $values['cantidad'];    //agrega a json con Key de boletos
             endif;
         endforeach;
 
-        $camisas = (int) $camisas;   //convierta a int
+
+        $camisas = (int) $camisas['cantidad'];   //convierta a int
         if($camisas > 0):
             $json['camisas'] = $camisas;   //agrega a json si es mayor a 0
         endif;
 
 
-        $etiquetas = (int) $etiquetas;   //convierta a int
+        $etiquetas = (int) $etiquetas['cantidad'];   //convierta a int
         if($etiquetas > 0):
             $json['etiquetas'] = $etiquetas;  //agrega a json si es mayor a 0
         endif;

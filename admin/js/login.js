@@ -1,4 +1,7 @@
 $(function () {
+    $('.login-box').addClass('animate__zoomIn');
+
+
     $('#login-admin').on('submit', function (e) {
         e.preventDefault();
         let datos = $(this).serializeArray();
@@ -35,6 +38,8 @@ $(function () {
                   },
                   onClose: () => {
                     window.location.href = 'index.php';
+                    $('.login-box').removeClass('animate__zoomIn');
+                    $('.login-box').addClass('animate__zoomOut');
                   }
                 })
               } else {

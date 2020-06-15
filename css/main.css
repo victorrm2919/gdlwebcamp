@@ -251,6 +251,7 @@
     margin: 1rem;
   }
   
+  
   .ocultar {
     display: none;
   }
@@ -996,6 +997,11 @@
     padding: .6rem;
     width: 120px;
     text-align: center;
+  }
+
+  .msjSeleccion p{
+    color: #868686;
+    font-size: 1.5rem;
   }
   
   .contenido-dia {

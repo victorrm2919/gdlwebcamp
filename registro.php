@@ -8,17 +8,17 @@
     <div id="datos-usuario" class="registro caja info">
       <div class="campo">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre">
+        <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre" required>
       </div>
 
       <div class="campo">
         <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" placeholder="Tu Apellido">
+        <input type="text" id="apellido" name="apellido" placeholder="Tu Apellido" required>
       </div>
 
       <div class="campo">
         <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="Tu Correo Electronico">
+        <input type="email" id="email" name="email" placeholder="Tu Correo Electronico" required>
       </div>
 
       <div id="error"></div>
@@ -57,7 +57,8 @@
             </ul>
             <div class="orden">
               <label for="pase-completo">Boletos deseados: </label>
-              <input type="number" id="pase-completo" name="boletos[completo][cantidad]" min="0" size="3" placeholder="0">
+              <input type="number" id="pase-completo" name="boletos[completo][cantidad]" min="0" size="3"
+                placeholder="0">
               <input type="hidden" value="50" name="boletos[completo][precio]">
             </div>
           </div>
@@ -87,112 +88,78 @@
 
     <div id="eventos" class="eventos">
       <h3>Elige tus talleres</h3>
+      <?php
+        require_once 'includes/funciones/bd_conexion.php';
+        try {
+          $sql = "SELECT evento_id, nombre_evento, fecha_evento, hora_evento, cat_evento, nombre_invitado, apellido_invitado, clave ";
+          $sql .= "FROM eventos ";
+          $sql .= "INNER JOIN categoria_evento ";
+          $sql .= "ON eventos.id_cat_evento = categoria_evento.id_categoria ";
+          $sql .= "INNER JOIN invitados ";
+          $sql .= "ON eventos.id_inv = invitados.invitado_id ";
+          $sql .= "ORDER By hora_evento, fecha_evento";
+          $resultado = $conn->query($sql);
+        } catch (Exception $e) {
+          echo $e->getMessage();
+        }
+
+        $dias = array();
+
+        while ($eventos = $resultado->fetch_assoc()) /* imprime resultados) el resultado de fetch_assoc se guarda en eventos como array*/ { 
+          $fecha = $eventos['fecha_evento'];  /* Var para agrupar */
+          $categorias = $eventos['cat_evento'];
+            $evento = array(  /* crea arreglo personalizado */
+              'titulo' => $eventos['nombre_evento'],
+              'fecha' => $eventos['fecha_evento'],
+              'hora' => $eventos['hora_evento'],
+              'invitado' => $eventos['nombre_invitado'] . " " . $eventos['apellido_invitado'],
+              'clave' => $eventos['clave']
+            );
+
+          $dias[$fecha][$categorias][] = $evento;  /* se crea un segundo nivel para poder agrupar se indexa la fecha en el primer nivel */
+        } //while fetch_assoc
+      ?>
+
       <div class="caja">
-        <div id="viernes" class="contenido-dia">
-          <h4>Viernes</h4>
-          <div class="info-cursos">
-            <div>
-              <p>Talleres:</p>
-              <label><input type="checkbox" name="registro[]" id="taller_01" value="taller_01"><time>10:00</time> Responsive
-                Web Design</label>
-              <label><input type="checkbox" name="registro[]" id="taller_02" value="taller_02"><time>12:00</time>
-                Flexbox</label>
-              <label><input type="checkbox" name="registro[]" id="taller_03" value="taller_03"><time>14:00</time> HTML5 y
-                CSS3</label>
-              <label><input type="checkbox" name="registro[]" id="taller_04" value="taller_04"><time>17:00</time>
-                Drupal</label>
-              <label><input type="checkbox" name="registro[]" id="taller_05" value="taller_05"><time>19:00</time>
-                WordPress</label>
-            </div>
-            <div>
-              <p>Conferencias:</p>
-              <label><input type="checkbox" name="registro[]" id="conf_01" value="conf_01"><time>10:00</time> Como ser
-                Freelancer</label>
-              <label><input type="checkbox" name="registro[]" id="conf_02" value="conf_02"><time>17:00</time> Tecnologías
-                del Futuro</label>
-              <label><input type="checkbox" name="registro[]" id="conf_03" value="conf_03"><time>19:00</time> Seguridad en
-                la Web</label>
-            </div>
-            <div>
-              <p>Seminarios:</p>
-              <label><input type="checkbox" name="registro[]" id="sem_01" value="sem_01"><time>10:00</time> Diseño UI y UX
-                para móviles</label>
-            </div>
-          </div>
+
+        <div class="msjSeleccion">
+          <p>Selecciona tus boletos para ver más detalles de los eventos</p>
         </div>
-        <!--#viernes-->
-        <div id="sabado" class="contenido-dia">
-          <h4>Sábado</h4>
+        <!-- imprime todos los eventos -->
+
+        <?php 
+              foreach ($dias as $dia => $lista_eventos) {
+                  //formateo de fecha Windows
+                  setlocale(LC_TIME, 'spanish');  //WINDOWS
+                  setlocale(LC_TIME, 'es-ES.UTF-8');  //UNIX
+                        
+                  $titulo_fecha =  strftime('%A, %d/%B/%Y', strtotime($dia)); 
+                  $nombre_dia = strftime('%A', strtotime($dia));
+              ?>
+
+        <div id="<?php echo $nombre_dia?>" class="contenido-dia">
+          <h4><?php echo strtoupper($titulo_fecha)?></h4>
           <div class="info-cursos">
+
+            <?php foreach ($lista_eventos as $categoria => $info) {?>
             <div>
-              <p>Talleres:</p>
-              <label><input type="checkbox" name="registro[]" id="taller_06" value="taller_06"><time>10:00</time>
-                AngularJS</label>
-              <label><input type="checkbox" name="registro[]" id="taller_07" value="taller_07"><time>12:00</time> PHP y
-                MySQL</label>
-              <label><input type="checkbox" name="registro[]" id="taller_08" value="taller_08"><time>14:00</time> JavaScript
-                Avanzado</label>
-              <label><input type="checkbox" name="registro[]" id="taller_09" value="taller_09"><time>17:00</time> SEO en
-                Google</label>
-              <label><input type="checkbox" name="registro[]" id="taller_10" value="taller_10"><time>19:00</time> De
-                Photoshop a HTML5 y CSS3</label>
-              <label><input type="checkbox" name="registro[]" id="taller_11" value="taller_11"><time>21:00</time> PHP Medio
-                y Avanzado</label>
+              <p><?php echo $categoria?>:</p>
+              <?php foreach ($info as $valor) {?>
+              <label>
+                <input type="checkbox" name="registro[]" id="<?php echo $valor['clave']?>"
+                  value="<?php echo $valor['clave']?>">
+                <time><?php echo date('H:i', strtotime($valor['hora'])) ?></time>
+                <?php echo $valor['titulo']?> <small>por <?php echo $valor['invitado']?></small>
+              </label>
+
+              <?php }?>
             </div>
-            <div>
-              <p>Conferencias:</p>
-              <label><input type="checkbox" name="registro[]" id="conf_04" value="conf_04"><time>10:00</time> Como crear una
-                tienda online que venda millones en pocos días</label>
-              <label><input type="checkbox" name="registro[]" id="conf_05" value="conf_05"><time>17:00</time> Los mejores
-                lugares para encontrar trabajo</label>
-              <label><input type="checkbox" name="registro[]" id="conf_06" value="conf_06"><time>19:00</time> Pasos para
-                crear un negocio rentable</label>
-            </div>
-            <div>
-              <p>Seminarios:</p>
-              <label><input type="checkbox" name="registro[]" id="sem_02" value="sem_02"><time>10:00</time> Aprende a
-                Programar en una mañana</label>
-              <label><input type="checkbox" name="registro[]" id="sem_03" value="sem_03"><time>17:00</time> Diseño UI y UX
-                para móviles</label>
-            </div>
-          </div>
-        </div>
-        <!--#sabado-->
-        <div id="domingo" class="contenido-dia">
-          <h4>Domingo</h4>
-          <div class="info-cursos">
-            <div>
-              <p>Talleres:</p>
-              <label><input type="checkbox" name="registro[]" id="taller_12" value="taller_12"><time>10:00</time>
-                Laravel</label>
-              <label><input type="checkbox" name="registro[]" id="taller_13" value="taller_13"><time>12:00</time> Crea tu
-                propia API</label>
-              <label><input type="checkbox" name="registro[]" id="taller_14" value="taller_14"><time>14:00</time> JavaScript
-                y jQuery</label>
-              <label><input type="checkbox" name="registro[]" id="taller_15" value="taller_15"><time>17:00</time> Creando
-                Plantillas para WordPress</label>
-              <label><input type="checkbox" name="registro[]" id="taller_16" value="taller_16"><time>19:00</time> Tiendas
-                Virtuales en Magento</label>
-            </div>
-            <div>
-              <p>Conferencias:</p>
-              <label><input type="checkbox" name="registro[]" id="conf_07" value="conf_07"><time>10:00</time> Como hacer
-                Marketing en línea</label>
-              <label><input type="checkbox" name="registro[]" id="conf_08" value="conf_08"><time>17:00</time> ¿Con que
-                lenguaje debo empezar?</label>
-              <label><input type="checkbox" name="registro[]" id="conf_09" value="conf_09"><time>19:00</time> Frameworks y
-                librerias Open Source</label>
-            </div>
-            <div>
-              <p>Seminarios:</p>
-              <label><input type="checkbox" name="registro[]" id="sem_04" value="sem_04"><time>14:00</time> Creando una App
-                en Android en una tarde</label>
-              <label><input type="checkbox" name="registro[]" id="sem_05" value="sem_05"><time>17:00</time> Creando una App
-                en iOS en una tarde</label>
-            </div>
-          </div>
-        </div>
-        <!--#domingo-->
+            <?php }?>
+            <!-- fin foreach eventos -->
+          </div> <!-- info-cursos -->
+        </div> <!-- Dia -->
+        <?php } ?>
+        <!-- fin foreach dias -->
       </div>
       <!--.caja-->
     </div>
@@ -204,24 +171,30 @@
         <div class="extras">
           <div class="orden">
             <label for="camisa-evento">Camisa del evento $10 <small>(Promocion 7% dto.)</small></label>
-            <input type="number" min="0" id="camisa-evento" name="pedido_extra[camisas][cantidad]" size="3" placeholder="0">
+            <input type="number" min="0" id="camisa-evento" name="pedido_extra[camisas][cantidad]" size="3"
+              placeholder="0">
             <input type="hidden" value="10" name="pedido_extra[camisas][precio]">
           </div><!-- orden -->
 
           <div class="orden">
             <label for="etiquetas">Paquete de 10 etiquetas $2 <small>(HTML5, CSS3, JavaScript, Angular, React,
                 Chrome)</small></label>
-            <input type="number" min="0" id="etiquetas" name="pedido_extra[etiquetas][cantidad]" size="3" placeholder="0">
+            <input type="number" min="0" id="etiquetas" name="pedido_extra[etiquetas][cantidad]" size="3"
+              placeholder="0">
             <input type="hidden" value="2" name="pedido_extra[etiquetas][precio]">
           </div><!-- orden -->
 
           <div class="orden">
             <label for="regalo">Selecciona un Regalo</label>
             <select id="regalo" name="regalo" required>
-              <option value="" selected disabled>-- Seleccione un regalo --</option>
-              <option value="2">Etiquetas</option>
-              <option value="1">Pulsera</option>
-              <option value="3">Plumas</option>
+              <option value="" selected disabled hidden>-- Seleccione un regalo --</option>
+              <?php 
+              $sql = "SELECT * FROM regalos";
+              $resultado = $conn->query($sql);
+
+              while ($regalo = $resultado->fetch_assoc()):?>
+              <option value="<?php echo $regalo['id_regalo']?>"><?php echo $regalo['nombre_regalo']?></option>
+              <?php endwhile;?>
             </select>
           </div>
 

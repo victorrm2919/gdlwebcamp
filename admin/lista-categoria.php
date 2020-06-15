@@ -50,7 +50,7 @@ include 'templates/navegacion.php';
 
                   while ($categoria = $resultado->fetch_assoc()):?>
                     <tr>
-                      <td class="align-middle"><?php echo $categoria ['cat_evento'] ?></dh>
+                      <td class="align-middle"><?php echo $categoria ['cat_evento'] ?></td>
                       <td class="align-middle"><i class="<?php echo $categoria ['icono'] ?>"></i></td>
                       <td class="align-middle">
                         <a href="editar-categoria.php?id=<?php echo $categoria ['id_categoria'] ?>" class="btn btn-sm bg-gradient-yellow m-1">

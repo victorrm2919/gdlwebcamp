@@ -23,7 +23,6 @@ if(isset($_POST['submit'])):  //valida que el envio halla sido por un submit
     $email = $_POST['email'];
     $regalo = $_POST['regalo'];
     $total = $_POST['total_pedido'];
-    $fecha = date('Y-m-d H:i:s');  //agrega fecha del dia en el formaro aaaa/m/d hh:mm:ss
     // Pedidos
     $boletos = $_POST['boletos'];
     $numeroBoletos = $boletos;  ///copia para no afectar el de la base
@@ -42,8 +41,8 @@ if(isset($_POST['submit'])):  //valida que el envio halla sido por un submit
 
     try {
       require 'includes/funciones/bd_conexion.php';  /* archivo requerido, crea conexion */ 
-      $stmt = $conn->prepare("INSERT INTO registrados (nombre_registrado, apellido_registrado, email_registrado, fecha_registro, pases_articulos, talleres_registrados, regalo, total_pagado) VALUES (?,?,?,?,?,?,?,?)");  //prepare statements, previene inyeccion sql, prepara la conexion para una mas segura
-      $stmt->bind_param("ssssssis",$nombre, $apellido, $email, $fecha, $pedido, $registro, $regalo, $total);  //iniciales de tipo de valores a ingresar, variables
+      $stmt = $conn->prepare("INSERT INTO registrados (nombre_registrado, apellido_registrado, email_registrado, fecha_registro, pases_articulos, talleres_registrados, regalo, total_pagado) VALUES (?, ?, ?, NOW(), ?, ?, ?, ?)");
+      $stmt->bind_param("sssssis",$nombre, $apellido, $email, $pedido, $registro, $regalo, $total);  //iniciales de tipo de valores a ingresar, variables
       $stmt->execute();  //ejecuta todo lo creado
       $id_registro = $stmt->insert_id;
       $stmt->close(); //cierra el statement

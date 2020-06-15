@@ -1,4 +1,6 @@
 $(function () {
+ 
+
   /* -------------------------------------------Eventos-------------------------------------------  */
 
   $('#guardar-registro').on('submit', function (e) {
@@ -11,6 +13,7 @@ $(function () {
       data: datos,
       dataType: "json",
       success: function (data) {
+        console.log(data);
         let registro, articulo, evento
         if (data.registro == 'Nuevo') {
          evento = 'creo';
@@ -42,13 +45,16 @@ $(function () {
             showConfirmButton: false,
             timer: 1500,
             onClose: () => {
-
+              
+              //Limpieza al crear registros
               if (data.registro == 'Nuevo') {
                 $('#guardar-registro')[0].reset();
                 if (data.tipo == 'Administrador') {crearAdmin()}
                 if (data.tipo == 'Evento') {crearEvento()}
+                if (data.tipo == 'Usuario') {crearUsuario()}
               }
 
+              //Acciones al editar registros
               if (data.registro == 'Actualizar'){
                 if (data.tipo == 'Administrador') {
                   editarAdmin(data.nivel);
@@ -58,6 +64,9 @@ $(function () {
                 }
                 if (data.tipo == 'Categoria') {
                   window.location.href = 'lista-categoria.php'
+                }
+                if (data.tipo == 'Usuario') {
+                  window.location.href = 'lista-registrados.php'
                 }
               }
               
@@ -84,68 +93,9 @@ $(function () {
     });
   });
 
-  $('.borrar-registro').click(function (e) {
-    e.preventDefault();
+  $('.borrar-registro').on('click', borrarRegistro);
 
-    Swal.fire({
-      title: '¿Estás Seguro?',
-      text: "Este proceso no se podra revertir",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, Borrar!',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.value) {
-
-        let id = $(this).attr('data-id');
-        let tipo = $(this).attr('data-tipo');
-
-        $.ajax({
-          type: 'post',
-          url: 'modelo-' + tipo + '.php',
-          data: {
-            'id': id,
-            'registro': 'eliminar'
-          },
-          dataType: 'json',
-          success: function (data) {
-
-            if (data.respuesta == 'correcto') {
-
-              let borrar, articulo;
-              if (data.tipo == 'Categoria') {
-                borrar = 'eliminada';
-                articulo = 'La';
-              } else {
-                borrar = 'eliminado';
-                articulo = 'El';
-              }
-
-              $('[data-id="' + data.id + '"]').parents('tr').remove();
-
-              Swal.fire({
-                title: 'Eliminado!',
-                text: `${articulo} ${data.tipo} ha sido ${borrar} correctamente`,
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 1500,
-              })
-            } else {
-              Swal.fire({
-                title: 'Hubo un error!',
-                text: 'Hubo un error..',
-                icon: 'error',
-                showConfirmButton: false,
-                timer: 1500,
-              })
-            }
-          }
-        });
-      }
-    })
-  });
+  $('#registros tbody').on('click', 'a.borrar-registro', borrarRegistro);
 
   $('#guardar-registro-archivo').on('submit', function (e) {
     e.preventDefault();
@@ -194,8 +144,70 @@ $(function () {
     });
   });
 
-});
+  function borrarRegistro(e) {
+    e.preventDefault();
 
+    Swal.fire({
+      title: '¿Estás Seguro?',
+      text: "Este proceso no se podra revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Borrar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+
+        let id = $(this).attr('data-id');
+        let tipo = $(this).attr('data-tipo');
+
+        $.ajax({
+          type: 'post',
+          url: 'modelo-' + tipo + '.php',
+          data: {
+            'id': id,
+            'registro': 'eliminar'
+          },
+          dataType: 'json',
+          success: function (data) {
+
+            if (data.respuesta == 'correcto') {
+
+              let borrar, articulo;
+              if (data.tipo == 'Categoria') {
+                borrar = 'eliminada';
+                articulo = 'La';
+              } else {
+                borrar = 'eliminado';
+                articulo = 'El';
+              }
+
+              $('[data-id="' + data.id + '"]').parents('tr').remove();
+
+              Swal.fire({
+                title: 'Eliminado!',
+                text: `${articulo} ${data.tipo} ha sido ${borrar} correctamente`,
+                icon: 'success',  
+                showConfirmButton: false,
+                timer: 1500
+              })
+            } else {
+              Swal.fire({
+                title: 'Hubo un error!',
+                text: 'Hubo un error..',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            }
+          }
+        });
+      }
+    })
+  }
+
+});
 /* -------------------------------------------Funciones-------------------------------------------  */
 function crearAdmin() {
   $('#password').removeClass('is-invalid').removeClass('is-valid');
@@ -215,4 +227,13 @@ function editarAdmin(nivel) {
   } else {
     window.location.href = 'admin-area.php'
   }
+}
+
+function crearUsuario() {
+  $('ul#lista-producto li').remove();
+  $('#suma-total').text('');
+  $('#total_pedido').removeAttr('value');
+  $('.msjSeleccion').css('display', 'block');
+  $('.contenido-dia').css('display', 'none');
+  $('#regalo').empty();
 }

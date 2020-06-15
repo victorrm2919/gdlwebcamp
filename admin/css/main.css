@@ -1,0 +1,89 @@
+/* Datatables */
+#registros {
+    max-width: 100%;
+}
+
+.borrar-registro {
+    z-index: 10;
+}
+.borrar-registro i{
+    z-index: -1;
+}
+
+
+/* Formulario de registrados */
+#validacionInfo {
+    display: none;
+}
+
+.lista-precios, .tabla-precio ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-precios > li {
+    margin: auto;
+}
+
+.lista-precios .numero {
+    font-size: 30px;
+    font-weight: bold   ;
+}
+
+.tabla-precio{
+    min-height: 350px;
+    margin: 0 !important;
+}
+
+
+
+.tabla-precio h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    color: #fe4918;
+    margin-bottom: 1rem;
+}
+
+.tabla-precio .orden {
+    margin: 1rem auto;
+}
+
+.contenido-dia {
+    display: none;
+}
+
+.contenido-dia h4 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fe4918;
+    padding-top: 1rem;
+}
+
+.contenido-dia time {
+    color: #fe4918;
+}
+
+#lista-producto {
+    padding: 0;
+    margin: 0;
+}
+
+.total-pagado span, #cargos {
+    color: #fe4918;
+    font-weight: bold;
+}
+
+.total p {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+#suma-total {
+    color: #fe4918;
+    font-size: 30px;
+    font-weight: bold;
+}
+

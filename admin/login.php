@@ -10,7 +10,7 @@ if ($_GET['cerrar_sesion']) {  //valida que se halla dado click en cerrar sessio
 ?>
 
 
-<div class="login-box">
+<div class="login-box animate__animated">
   <div class="login-logo">
     <a href="../index.php"><b>Sitio</b>Conferencias</a>
   </div>

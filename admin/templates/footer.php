@@ -26,8 +26,7 @@ if ($pagina !== 'login') {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
   integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <!-- Datatables -->
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/r-2.2.5/datatables.min.js">
-</script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/r-2.2.5/datatables.min.js"></script>
 <!-- DatePicket -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -51,6 +50,8 @@ if ($pagina !== 'login') {
 <script src="js/conexiones-ajax.js"></script>
 <!-- Login -->
 <script src="js/login.js"></script>
+<!-- Cotizador -->
+<script src="../js/cotizador.js"></script>
 <!-- Scrips -->
 <script src="js/app.js"></script>
 
