@@ -1,12 +1,13 @@
 <?php 
 include 'functions/funciones.php';
 
-$nombre_invitado = $_POST['nombre-invitado'];
-$apellido_invitado = $_POST['apellido-invitado'];
-$descripcion = $_POST['biografia'];
 
 if ($_POST['registro'] == 'nuevo') {
-  
+
+    $nombre_invitado = $_POST['nombre-invitado'];
+    $apellido_invitado = $_POST['apellido-invitado'];
+    $descripcion = $_POST['biografia'];
+    
     $directorio = '../img/invitados/';
 
     if(!is_dir($directorio)) {   /* Valida direcctorio */
@@ -51,6 +52,10 @@ if ($_POST['registro'] == 'nuevo') {
 }
 
 if ($_POST['registro'] == 'actualizar') {
+    $nombre_invitado = $_POST['nombre-invitado'];
+    $apellido_invitado = $_POST['apellido-invitado'];
+    $descripcion = $_POST['biografia'];
+
     $directorio = '../img/invitados/';
     $id = $_POST['id_registro'];
 

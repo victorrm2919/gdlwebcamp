@@ -1,6 +1,71 @@
 $(function () {
 
   /* *********************** Librerias *********************** */
+  //Chart JS
+  //-------------
+  //- LINE CHART -
+  //--------------
+
+  $.getJSON("servicios-registrados.php",function (data) {
+      
+    let datos = data.datos;
+
+    let fechas = datos.map(function (e) {
+      return e.fecha
+    });
+
+    let cantidades = datos.map(function (e) {
+      return e.cantidad
+    });
+
+    let lineChart = new Chart($('#grafica-registros').get(0).getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: fechas,
+        datasets: [{
+          data: cantidades,
+          label: 'Usuarios',
+          backgroundColor: 'rgba(60,141,188,0.9)',
+          borderColor: 'rgba(60,141,188,0.8)',
+          pointRadius: 3,
+          pointColor: '#3b8bba',
+          pointStrokeColor: 'rgba(60,141,188,1)',
+          pointHighlightFill: '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          fill: false
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        elements: {
+          point: {
+            pointStyle: 'circle'
+          }
+        },
+        responsive: true,
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display: false,
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              stepSize: 1
+            },
+            gridLines: {
+              display: false,
+            }
+          }]
+        }
+      }
+    })
+    
+  });
+  
+
+
+
   //datatable
   let ultimaCol = $('#registros thead th').length
   let porcentaje, posicion;
@@ -11,8 +76,8 @@ $(function () {
     porcentaje = `${100/(ultimaCol)}%`;
     posicion = '_all'
   }
-  
-let table = $('#registros').DataTable({
+
+  let table = $('#registros').DataTable({
     "responsive": true,
     "autoWidth": false,
     "columnDefs": [{
@@ -23,8 +88,8 @@ let table = $('#registros').DataTable({
       "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
     }
   });
-  
-  if($('#registros').hasClass('registrados')) {
+
+  if ($('#registros').hasClass('registrados')) {
     table.column(2).order('desc').draw();
   }
 
@@ -148,14 +213,14 @@ let table = $('#registros').DataTable({
 
   /* Registrados */
 
-  $('#nombre, #apellido, #email').blur(function (e) { 
+  $('#nombre, #apellido, #email').blur(function (e) {
     let valor = $(this).val();
     let campo = $(this).attr('id');
     if (valor == '') {
       $(this).parents('.validacion').addClass('was-validate');
       $(this).addClass('is-invalid');
       $('#validacionInfo').fadeIn().text(`Es necesario ingresar el ${campo}`);
-    } else if($(this).val() != ''){
+    } else if ($(this).val() != '') {
       $(this).removeClass('is-invalid');
       if (!$(this).parents('.validacion').children().children().children().hasClass('is-invalid')) {
         $(this).parents('.validacion').removeClass('was-validate');
@@ -164,7 +229,7 @@ let table = $('#registros').DataTable({
       }
     }
 
-    
+
   });
 
 

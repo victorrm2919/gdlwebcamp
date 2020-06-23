@@ -5,7 +5,6 @@ $(function () {
     $('#login-admin').on('submit', function (e) {
         e.preventDefault();
         let datos = $(this).serializeArray();
-    
         //validacion de datos 
         if ($('#usuario').val() === '' || $('#password').val() === '') {
           Swal.fire({
@@ -24,14 +23,15 @@ $(function () {
             data: datos,
             dataType: "json",
             success: function (data) {
-    
+              console.log(data);
               if (data.respuesta === 'correcto') {
+              
                 Swal.fire({
                   icon: 'success',
                   title: 'Inicio Correcto',
                   text: `Bienvenido ${data.nombre}`,
                   showConfirmButton: false,
-                  timer: 2000,
+                  timer: 1500,
                   timerProgressBar: true,
                   onRender: () => {
                     $('body').attr('style', 'height: 100vh !important')

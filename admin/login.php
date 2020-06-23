@@ -3,7 +3,7 @@ session_start();
 include 'functions/funciones.php';
 include 'templates/header.php';
 
-if ($_GET['cerrar_sesion']) {  //valida que se halla dado click en cerrar session y enviar por get el valor, se creo una sesion vacia
+if (isset($_GET['cerrar_sesion'])) {  //valida que se halla dado click en cerrar session y enviar por get el valor, se creo una sesion vacia
   session_destroy();
 }
 

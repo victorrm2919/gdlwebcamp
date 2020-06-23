@@ -1,10 +1,10 @@
 <?php 
 include 'functions/funciones.php';
-$categoria = $_POST['nombre'];
-$icono = $_POST['icono'];
 
 if ($_POST['registro'] == 'nuevo') {
-  
+    $categoria = $_POST['nombre'];
+    $icono = $_POST['icono'];
+    
 
     try {
 
@@ -34,6 +34,9 @@ if ($_POST['registro'] == 'nuevo') {
 }
 
 if ($_POST['registro'] == 'actualizar') {
+    $categoria = $_POST['nombre'];
+    $icono = $_POST['icono'];
+
     try {
         $id = $_POST['id_registro'];
             

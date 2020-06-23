@@ -28,101 +28,120 @@ include 'templates/navegacion.php';
         <h3 class="card-title">Revisa la informacion general del Evento</h3>
       </div>
       <div class="card-body">
-        <div class="row">
 
-          <div class="col-lg-3 col-6">
-            <!-- widget -->
-            <?php 
-            $sql = "SELECT COUNT(id_registrado) AS registros FROM registrados";
-            $resultado = $conn->query($sql);
-            $info = $resultado->fetch_assoc();
-            ?>
-            <!-- small card -->
-            <div class="small-box bg-gradient-cyan elevation-3">
-              <div class="inner">
-                <h3><?php echo $info['registros']?></h3>
-
-                <p>Total Registros</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-user-plus"></i>
-              </div>
-              <a href="lista-registrados.php" class="small-box-footer">
-                Más información <i class="fas fa-arrow-circle-right"></i>
-              </a>
+      <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Registros diarios</h3>
+          </div>
+          <div class="card-body">
+            <div class="chart">
+              <canvas id="grafica-registros"
+                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
             </div>
-          </div> <!-- Fin widget -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
 
-          <div class="col-lg-3 col-6">
-            <!-- widget -->
-            <?php 
-            $sql = "SELECT COUNT(id_registrado) AS registros FROM registrados WHERE pagado = 1";
-            $resultado = $conn->query($sql);
-            $info = $resultado->fetch_assoc();
-            ?>
-            <!-- small card -->
-            <div class="small-box bg-gradient-yellow elevation-3">
-              <div class="inner">
-                <h3><?php echo $info['registros']?></h3>
+        <div class="content">
+          <div class="content-header text-sm">
+              <h1>Resumen General</h1>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-6">
+              <!-- widget -->
+              <?php 
+              $sql = "SELECT COUNT(id_registrado) AS registros FROM registrados";
+              $resultado = $conn->query($sql);
+              $info = $resultado->fetch_assoc();
+              ?>
+              <!-- small card -->
+              <div class="small-box bg-gradient-cyan elevation-3">
+                <div class="inner">
+                  <h3><?php echo $info['registros']?></h3>
 
-                <p>Total Pagados</p>
+                  <p>Total Registros</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-user-plus"></i>
+                </div>
+                <a href="lista-registrados.php" class="small-box-footer">
+                  Más información <i class="fas fa-arrow-circle-right"></i>
+                </a>
               </div>
-              <div class="icon">
-                <i class="fas fa-shopping-bag"></i>
-              </div>
-              <a href="lista-registrados.php" class="small-box-footer">
-                Más información <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div> <!-- Fin widget -->
+            </div> <!-- Fin widget -->
 
-          <div class="col-lg-3 col-6">
-            <!-- widget -->
-            <?php 
-            $sql = "SELECT COUNT(id_registrado) AS registros FROM registrados WHERE pagado = 0";
-            $resultado = $conn->query($sql);
-            $info = $resultado->fetch_assoc();
-            ?>
-            <!-- small card -->
-            <div class="small-box bg-gradient-red elevation-3">
-              <div class="inner">
-                <h3><?php echo $info['registros']?></h3>
+            <div class="col-lg-3 col-6">
+              <!-- widget -->
+              <?php 
+              $sql = "SELECT COUNT(id_registrado) AS registros FROM registrados WHERE pagado = 1";
+              $resultado = $conn->query($sql);
+              $info = $resultado->fetch_assoc();
+              ?>
+              <!-- small card -->
+              <div class="small-box bg-gradient-yellow elevation-3">
+                <div class="inner">
+                  <h3><?php echo $info['registros']?></h3>
 
-                <p>Pendientes de Pago</p>
+                  <p>Total Pagados</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-shopping-bag"></i>
+                </div>
+                <a href="lista-registrados.php" class="small-box-footer">
+                  Más información <i class="fas fa-arrow-circle-right"></i>
+                </a>
               </div>
-              <div class="icon">
-                <i class="fas fa-cart-arrow-down"></i>
-              </div>
-              <a href="lista-registrados.php" class="small-box-footer">
-                Más información <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div> <!-- Fin widget -->
+            </div> <!-- Fin widget -->
 
-          <div class="col-lg-3 col-6">
-            <!-- widget -->
-            <?php 
-            $sql = "SELECT SUM(total_pagado) AS ganancias FROM registrados WHERE pagado = 1";
-            $resultado = $conn->query($sql);
-            $info = $resultado->fetch_assoc();
-            ?>
-            <!-- small card -->
-            <div class="small-box bg-gradient-green elevation-3">
-              <div class="inner">
-                <h3>$<?php echo $info['ganancias']?></h3>
+            <div class="col-lg-3 col-6">
+              <!-- widget -->
+              <?php 
+              $sql = "SELECT COUNT(id_registrado) AS registros FROM registrados WHERE pagado = 0";
+              $resultado = $conn->query($sql);
+              $info = $resultado->fetch_assoc();
+              ?>
+              <!-- small card -->
+              <div class="small-box bg-gradient-red elevation-3">
+                <div class="inner">
+                  <h3><?php echo $info['registros']?></h3>
 
-                <p>Total Venta</p>
+                  <p>Pendientes de Pago</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-cart-arrow-down"></i>
+                </div>
+                <a href="lista-registrados.php" class="small-box-footer">
+                  Más información <i class="fas fa-arrow-circle-right"></i>
+                </a>
               </div>
-              <div class="icon">
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-              <a href="lista-registrados.php" class="small-box-footer">
-                Más información <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div> <!-- Fin widget -->
+            </div> <!-- Fin widget -->
 
-        </div><!-- Fin row -->
+            <div class="col-lg-3 col-6">
+              <!-- widget -->
+              <?php 
+              $sql = "SELECT SUM(total_pagado) AS ganancias FROM registrados WHERE pagado = 1";
+              $resultado = $conn->query($sql);
+              $info = $resultado->fetch_assoc();
+              ?>
+              <!-- small card -->
+              <div class="small-box bg-gradient-green elevation-3">
+                <div class="inner">
+                  <h3>$<?php echo (float) $info['ganancias']?></h3>
+
+                  <p>Total Venta</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-dollar-sign"></i>
+                </div>
+                <a href="lista-registrados.php" class="small-box-footer">
+                  Más información <i class="fas fa-arrow-circle-right"></i>
+                </a>
+              </div>
+            </div> <!-- Fin widget -->
+
+          </div><!-- Fin row -->
+        </div>
 
 
         <div class="content">
@@ -130,7 +149,7 @@ include 'templates/navegacion.php';
             <h1>Regalos</h1>
           </div>
           <div class="row">
-          <?php 
+            <?php 
             $sql_regalos = "SELECT * FROM regalos";
             $info_regalos = $conn->query($sql_regalos);
             
@@ -141,7 +160,8 @@ include 'templates/navegacion.php';
               $info = $resultado->fetch_assoc();
             ?>
 
-            <div class="col-lg-3 col-6"><!-- widget -->
+            <div class="col-lg-3 col-6">
+              <!-- widget -->
 
               <!-- small card -->
               <div class="small-box bg-gradient-olive elevation-3">
@@ -164,13 +184,8 @@ include 'templates/navegacion.php';
           </div><!-- Fin row -->
         </div><!-- Fin content -->
 
-
       </div>
       <!-- /.card-body -->
-      <div class="card-footer">
-        Footer
-      </div>
-      <!-- /.card-footer-->
     </div>
     <!-- /.card -->
 

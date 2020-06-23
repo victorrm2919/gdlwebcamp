@@ -1,7 +1,6 @@
 <?php 
 include 'functions/funciones.php';
 $usuario = $_POST['usuario'];
-$nombre = $_POST['nombre'];
 $pass = $_POST['password'];
 
 if (isset($_POST['login-admin'])) {

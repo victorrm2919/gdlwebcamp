@@ -1,18 +1,22 @@
 <?php 
 include 'functions/funciones.php';
-$nombre= $_POST['nombre'];
-$apellido = $_POST['apellido'];
-$email = $_POST['email'];
-$boletos = $_POST['boletos'];
-$camisas = $_POST['pedido_extra']['camisas'];
-$etiquetas = $_POST['pedido_extra']['etiquetas'];
-$talleres = $_POST['registro_evento'];
-$regalo = $_POST['regalo'];
-$total = $_POST['total_pedido'];
-$pedido = productos_json($boletos, $camisas, $etiquetas);
-$eventos = eventos_json($talleres);
+
 
 if ($_POST['registro'] == 'nuevo') {
+
+    $nombre= $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $email = $_POST['email'];
+    $boletos = $_POST['boletos'];
+    $camisas = $_POST['pedido_extra']['camisas'];
+    $etiquetas = $_POST['pedido_extra']['etiquetas'];
+    $talleres = $_POST['registro_evento'];
+    $regalo = $_POST['regalo'];
+    $total = $_POST['total_pedido'];
+    $pedido = productos_json($boletos, $camisas, $etiquetas);
+    $eventos = eventos_json($talleres);
+    
+
     try {
 
         $stmt = $conn->prepare("INSERT INTO registrados (nombre_registrado, apellido_registrado, email_registrado, fecha_registro, pases_articulos, talleres_registrados, regalo, total_pagado, pagado) VALUES (?, ?, ?, NOW(), ?, ?, ?, ?, 1)");
@@ -41,6 +45,19 @@ if ($_POST['registro'] == 'nuevo') {
 }
 
 if ($_POST['registro'] == 'actualizar') {
+
+    $nombre= $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $email = $_POST['email'];
+    $boletos = $_POST['boletos'];
+    $camisas = $_POST['pedido_extra']['camisas'];
+    $etiquetas = $_POST['pedido_extra']['etiquetas'];
+    $talleres = $_POST['registro_evento'];
+    $regalo = $_POST['regalo'];
+    $total = $_POST['total_pedido'];
+    $pedido = productos_json($boletos, $camisas, $etiquetas);
+    $eventos = eventos_json($talleres);
+
     try {
         $id = $_POST['id_registro'];
             

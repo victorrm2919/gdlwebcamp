@@ -46,12 +46,19 @@ if ($pagina !== 'login') {
 <script src="js/fontawesome-iconpicker.js"></script>
 <!-- Custom File -->
 <script src="js/bs-custom-file-input.min.js"></script>
+<!-- Chart JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <!-- Administradores -->
 <script src="js/conexiones-ajax.js"></script>
 <!-- Login -->
 <script src="js/login.js"></script>
+
+<?php if ($pagina == 'crear-registro' || $pagina == 'editar-registro') {?>
 <!-- Cotizador -->
 <script src="../js/cotizador.js"></script>
+<?php } ?>
+
+
 <!-- Scrips -->
 <script src="js/app.js"></script>
 

@@ -1,12 +1,14 @@
 <?php 
 include 'functions/funciones.php';
-$nombre_evento = $_POST['titulo-evento'];
-$fecha_evento = date('Y-m-d', strtotime($_POST['fecha-evento']));
-$hora_evento = date('H:i:s', strtotime($_POST{'hora-evento'}));
-$cat_evento = $_POST['categoria-evento'];
-$invitado = $_POST['invitado'];
+
 
 if ($_POST['registro'] == 'nuevo') {
+
+    $nombre_evento = $_POST['titulo-evento'];
+    $fecha_evento = date('Y-m-d', strtotime($_POST['fecha-evento']));
+    $hora_evento = date('H:i:s', strtotime($_POST{'hora-evento'}));
+    $cat_evento = $_POST['categoria-evento'];
+    $invitado = $_POST['invitado'];
 
     try {
 
@@ -36,6 +38,12 @@ if ($_POST['registro'] == 'nuevo') {
 }
 
 if ($_POST['registro'] == 'actualizar') {
+    $nombre_evento = $_POST['titulo-evento'];
+    $fecha_evento = date('Y-m-d', strtotime($_POST['fecha-evento']));
+    $hora_evento = date('H:i:s', strtotime($_POST{'hora-evento'}));
+    $cat_evento = $_POST['categoria-evento'];
+    $invitado = $_POST['invitado'];
+
     try {
         $id = $_POST['id_registro'];   
         $stmt = $conn->prepare("UPDATE eventos SET nombre_evento = ?, fecha_evento = ?, hora_evento = ?, id_cat_evento = ?, id_inv = ?, editado = NOW() WHERE evento_id = ?");

@@ -1,10 +1,11 @@
 <?php 
 include 'functions/funciones.php';
-$usuario = $_POST['usuario'];
-$nombre = $_POST['nombre'];
-$pass = $_POST['password'];
+
 
 if ($_POST['registro'] == 'nuevo') {
+    $usuario = $_POST['usuario'];
+    $nombre = $_POST['nombre'];
+    $pass = $_POST['password'];
     $opciones = array('costo' => 12);
     $password = password_hash($pass, PASSWORD_BCRYPT, $opciones);
 
@@ -36,6 +37,9 @@ if ($_POST['registro'] == 'nuevo') {
 }
 
 if ($_POST['registro'] == 'actualizar') {
+    $usuario = $_POST['usuario'];
+    $nombre = $_POST['nombre'];
+    $pass = $_POST['password'];
     try {
         $id = $_POST['id_registro'];
             

@@ -32,6 +32,8 @@ include 'functions/sesiones.php';
   <link rel="stylesheet" href="css/fontawesome-iconpicker.css">
   <!-- Animate CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+  <!-- Chart JS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="css/adminlte.min.css">
   <!-- Estilos Propios -->
