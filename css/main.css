@@ -360,13 +360,17 @@
   
   .contenido-barra {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
   }
   
   .logo {
-    flex: 0 0 calc(80% - 2rem)
+    flex: 0 0 calc(80% - 2rem);
+  }
+
+  .logo .nombre-sitio {
+    font-size: 2.5rem !important;
   }
   
   @media (min-width: 768px) {

@@ -8,11 +8,7 @@
 
       <div class="ultimos-tweets">
         <h3 class="titulo">Últimos <span>Tweets</span></h3>
-        <ul>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, omnis.</li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, omnis.</li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, omnis.</li>
-        </ul>
+        <a class="twitter-timeline" data-height="400" href="https://twitter.com/VctorRu07789965?ref_src=twsrc%5Etfw">Tweets by VctorRu07789965</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
 
       <div class="navegacion-footer">

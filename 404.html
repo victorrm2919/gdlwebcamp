@@ -5,57 +5,140 @@
   <meta charset="utf-8">
   <title>Page Not Found</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/f4439c2413.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
   <style>
     * {
       line-height: 1.2;
       margin: 0;
+      box-sizing: border-box;
     }
 
     html {
-      color: #888;
-      display: table;
-      font-family: sans-serif;
-      height: 100%;
-      text-align: center;
-      width: 100%;
+      background-color: #353535;
+      color: #fff;
+      font-family: 'Jockey One', sans-serif;
     }
 
     body {
-      display: table-cell;
-      vertical-align: middle;
-      margin: 2em auto;
-    }
-
-    h1 {
-      color: #555;
-      font-size: 2em;
-      font-weight: 400;
-    }
-
-    p {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      position: relative;
+      max-width: 1200px;
+      width: 95%;
+      height: 85vh;
       margin: 0 auto;
-      width: 280px;
     }
 
-    @media only screen and (max-width: 280px) {
-
-      body,
-      p {
-        width: 95%;
+    @media (min-width: 780px) {
+      body {
+        display: block;
       }
+    }
 
-      h1 {
-        font-size: 1.5em;
-        margin: 0 0 0.3em;
+    .mensaje {
+      font-size: 1rem;
+      margin: 4rem auto;
+      text-align: center;
+    }
+
+    @media (min-width: 780px) {
+      .mensaje {
+        font-size: 1.2rem;
+        margin: 5rem;
+        text-align: left;
       }
+    }
+
+    .imagen {
+      position: relative;
+      text-align: center;
 
     }
+
+    .imagen img {
+      width: 75%;
+    }
+
+    @media (min-width:780px) {
+      .imagen img {
+        width: 400px;
+      }
+    }
+
+    .imagen p {
+      position: absolute;
+      padding: 1rem;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      background-color: #646262;
+      font-size: 40px;
+      width: 70%;
+    }
+
+    @media (min-width: 780px) {
+
+      .imagen p {
+        font-size: 70px;
+        max-width: 450px;
+      }
+    }
+
+    .imagen p i {
+      color: yellow;
+    }
+
+
+    .btn {
+      width: 250px;
+      margin: 6rem auto 0 auto;
+      text-align: center;
+    }
+
+    @media (min-width: 780px) {
+      .btn {
+        position: absolute;
+        width: 250px;
+        bottom: 0;
+        right: 80px;
+        text-align: center;
+      }
+    }
+
+    .btn a {
+      padding: 1rem 2rem;
+      background-color: #fe4918;
+      border-radius: 15px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    .btn a:hover {
+      background-color: #d32e00;
+    }
+
   </style>
 </head>
 
 <body>
-  <h1>Page Not Found</h1>
-  <p>Sorry, but the page you were trying to view does not exist.</p>
+  <div class="mensaje">
+    <h1>Pagina no encontrada</h1>
+    <p>La pagina que estas intentando buscar no esta disponible, disculpa las molestias.</p>
+  </div>
+
+  <div class="imagen">
+    <img src="img/problem.png" alt="">
+    <p><i class="fas fa-exclamation-triangle"></i>404 Error</p>
+  </div>
+
+
+  <div class="btn">
+    <a href="index.php"><i class="fas fa-arrow-circle-left"></i> Regresar a sitio</a>
+  </div>
 </body>
 
 </html>
