@@ -89,6 +89,7 @@
   <script src="js/jquery.countdown.min.js"></script>  <!-- cuenta regresiva -->
   <script src="js/jquery.lettering.js"></script>  <!-- cambios de texto radicales -->
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>  <!-- mapa -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>  <!-- waypoints -->
   <script src="js/cotizador.js"></script>  <!-- cotizador -->
 
   <script src="js/main.js"></script>

@@ -70,10 +70,22 @@ $('.registro .navegacion-principal a:contains("Reservaciones")').addClass('activ
 
   //animacion numeros 
 
-  $('.resumen-evento li:nth-child(1) p').animateNumber({number: 6}, 1500);
-  $('.resumen-evento li:nth-child(2) p').animateNumber({number: 15}, 1200);
-  $('.resumen-evento li:nth-child(3) p').animateNumber({number: 3}, 1500);
-  $('.resumen-evento li:nth-child(4) p').animateNumber({number: 9}, 1500);
+
+
+var waypoint = new Waypoint({
+  element: document.getElementById('animacionNumeros'),
+  handler: function(direction) {
+    if (direction == 'down') {
+      console.log(this.triggerPoint);
+      $('.resumen-evento li:nth-child(1) p').animateNumber({number: 6}, 1500);
+      $('.resumen-evento li:nth-child(2) p').animateNumber({number: 15}, 1200);
+      $('.resumen-evento li:nth-child(3) p').animateNumber({number: 3}, 1500);
+      $('.resumen-evento li:nth-child(4) p').animateNumber({number: 9}, 1500);
+    }
+  },
+  offset: 1000
+})
+
 
 
   //conteo regresivo
