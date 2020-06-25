@@ -115,7 +115,7 @@
 
   </main>
 
-  <div class="contador parallax">
+  <div class="contador parallax" id='animacionNumeros'>
     <div class="contenedor">
       <ul class="resumen-evento">
         <li><p class="numero"></p> Invitados</li>
@@ -140,7 +140,7 @@
               <li>Todas las Conferencias</li>
               <li>Todos los Talleres</li>
             </ul>
-            <a href="#" class="btn hollow">Comprar</a>
+            <a href="registro.php?paseUndia=1" class="btn hollow">Comprar</a>
           </div>
         </li>
 
@@ -153,7 +153,7 @@
               <li>Todas las Conferencias</li>
               <li>Todos los Talleres</li>
             </ul>
-            <a href="#" class="btn">Comprar</a>
+            <a href="registro.php?paseCompleto=1" class="btn">Comprar</a>
           </div>
         </li>
 
@@ -166,7 +166,7 @@
               <li>Todas las Conferencias</li>
               <li>Todos los Talleres</li>
             </ul>
-            <a href="#" class="btn hollow">Comprar</a>
+            <a href="registro.php?pase2dias=1" class="btn hollow">Comprar</a>
           </div>
         </li>
 

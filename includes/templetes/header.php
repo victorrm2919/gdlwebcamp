@@ -1,3 +1,22 @@
+<?php
+  // Definir un nombre para cachear
+  $archivo = basename($_SERVER['PHP_SELF']);
+  $pagina = str_replace(".php", "", $archivo);
+
+  // Definir archivo para cachear (puede ser .php también)
+	$archivoCache = 'cache/'.$pagina.'.php';
+	// Cuanto tiempo deberá estar este archivo almacenado
+	$tiempo = 36000;
+	// Checar que el archivo exista, el tiempo sea el adecuado y muestralo
+	if (file_exists($archivoCache) && time() - $tiempo < filemtime($archivoCache)) {
+  	include($archivoCache);
+   	exit;
+	}
+	// Si el archivo no existe, o el tiempo de cacheo ya se venció genera uno nuevo
+	ob_start();
+?>
+
+
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -11,7 +30,7 @@
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
   <script src="https://kit.fontawesome.com/f4439c2413.js" crossorigin="anonymous"></script>  <!-- FontAwesome -->
-  <link rel="stylesheet" href="css/normalize.css"> <!-- Normalize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"> <!-- Normalize -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" /> <!-- mapa Open Source -->
 
   <?php 
@@ -21,7 +40,7 @@
     if ($pagina === 'invitados' || $pagina === 'index') {
       echo '<link rel="stylesheet" href="css/colorbox.css"> <!-- galeria con texto colorbox  -->';
     } else if ($pagina === 'conferencia') {
-      echo '<link rel="stylesheet" href="css/lightbox.css"> <!-- galeria Lightbox  -->';
+      echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css"> <!-- galeria Lightbox  -->';
     } 
   ?>
     

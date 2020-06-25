@@ -59,6 +59,7 @@
           <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
           <!--End mc_embed_signup-->
         </div>
+<!-- formulario para registro -->
 
   </footer>
 
@@ -70,7 +71,8 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script>
     window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')
-  </script>  <!-- jQuery -->
+  </script>  
+<!-- jQuery -->
 
   <script src="js/plugins.js"></script>
 
@@ -79,17 +81,27 @@
     $pagina = str_replace('.php', '', $archivo);
 
     if ($pagina === 'invitados' || $pagina === 'index') {
-      echo '<script src="js/jquery.colorbox-min.js"></script>  <!-- galeria con texto colorbox -->';
+      echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox-min.js" integrity="sha256-QbxNT+iBOdbuiav8squsceFDDYXb/8C+fI9r029M7X4=" crossorigin="anonymous"></script>  <!-- galeria con texto colorbox -->';
     } else if ($pagina === 'conferencia') {
-      echo '<script src="js/lightbox.js"></script>  <!-- galeria lightbox -->';
+      echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js" integrity="sha256-CtKylYan+AJuoH8jrMht1+1PMhMqrKnB8K5g012WN5I=" crossorigin="anonymous"></script>  <!-- galeria lightbox -->';
     }
   ?>
 
-  <script src="js/jquery.animateNumber.min.js"></script>  <!-- contador -->
-  <script src="js/jquery.countdown.min.js"></script>  <!-- cuenta regresiva -->
-  <script src="js/jquery.lettering.js"></script>  <!-- cambios de texto radicales -->
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>  <!-- mapa -->
-  <script src="js/cotizador.js"></script>  <!-- cotizador -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.min.js" integrity="sha256-GCAeRKCXFEtLTZ+gG1SCIrtGkYq1zZjMXkj+XUFNJqo=" crossorigin="anonymous"></script>  <!-- contador -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js" integrity="sha256-Ikk5myJowmDQaYVCUD0Wr+vIDkN8hGI58SGWdE671A8=" crossorigin="anonymous"></script>  <!-- cuenta regresiva -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js" integrity="sha256-7sov0P4cWkfKMVHQ/NvnWVqcLSPYrPwxdz+MtZ+ahl8=" crossorigin="anonymous"></script>  <!-- cambios de texto radicales -->
+  
+  <?php if ($pagina === 'index') {?>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>  <!-- mapa -->
+  <?php } ?>
+  
+
+  <?php if ($pagina === 'registro') {?>
+  <!-- Cotizador -->
+  <script src="js/cotizador.js"></script>
+  <?php } ?>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>  <!-- waypoints -->
 
   <script src="js/main.js"></script>
 
@@ -106,6 +118,15 @@
 
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async></script>
+
+<?php
+	// Guarda todo el contenido a un archivo
+	$fp = fopen($archivoCache, 'w');
+	fwrite($fp, ob_get_contents());
+	fclose($fp);
+	// Enviar al navegador
+  ob_end_flush();
+?>
 
 </body>
 

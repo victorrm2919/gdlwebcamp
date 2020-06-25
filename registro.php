@@ -1,6 +1,6 @@
-<?php include_once 'includes/templetes/header.php'; ?>
+<?php include_once 'includes/templetes/header.php';?>
 
-<section class="seccion contenedor">
+<section class="seccion contenedor" id="registroUsuario">
   <h2>Registro de Usuarios</h2>
 
 
@@ -40,7 +40,16 @@
             </ul>
             <div class="orden">
               <label for="pase-dia">Boletos deseados: </label>
-              <input type="number" id="pase-dia" name="boletos[un_dia][cantidad]" min="0" size="3" placeholder="0">
+
+              <?php 
+                if (isset($_GET['paseUndia'])):
+                  $paseDia = $_GET['paseUndia'];
+                endif;
+              ?>
+
+              <input type="number" id="pase-dia" name="boletos[un_dia][cantidad]" min="0" size="3" placeholder="0" value="<?php if (isset($_GET['paseUndia'])):
+                  echo $_GET['paseUndia'];
+                endif;?>">
               <input type="hidden" value="30" name="boletos[un_dia][precio]">
             </div>
           </div>
@@ -58,7 +67,9 @@
             <div class="orden">
               <label for="pase-completo">Boletos deseados: </label>
               <input type="number" id="pase-completo" name="boletos[completo][cantidad]" min="0" size="3"
-                placeholder="0">
+                placeholder="0" value="<?php if (isset($_GET['paseCompleto'])):
+                  echo $_GET['paseCompleto'];
+                endif;?>">
               <input type="hidden" value="50" name="boletos[completo][precio]">
             </div>
           </div>
@@ -75,7 +86,9 @@
             </ul>
             <div class="orden">
               <label for="pase-dosDias">Boletos deseados: </label>
-              <input type="number" id="pase-dosDias" name="boletos[2dias][cantidad]" min="0" size="3" placeholder="0">
+              <input type="number" id="pase-dosDias" name="boletos[2dias][cantidad]" min="0" size="3" placeholder="0" value="<?php if (isset($_GET['pase2dias'])):
+                  echo $_GET['pase2dias'];
+                endif;?>">
               <input type="hidden" value="45" name="boletos[2dias][precio]">
             </div>
           </div>
@@ -221,5 +234,6 @@
 
   </form>
 </section>
+
 
 <?php include_once 'includes/templetes/footer.php'; ?>
