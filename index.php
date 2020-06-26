@@ -221,7 +221,7 @@
     <div class="contenido-newsletter contenedor">
         <p>Registrate al Newsletter:</p>
         <h3>SitioConferencias</h3>
-        <a href="#mc_embed_signup" class="newlestter-info btn transparent">Registro</a>
+        <a href="#mc_embed_signup" class="newlestter-info btn transparent" id="btnNewlestter">Registro</a>
     </div><!-- Contenido -->
   </div><!-- Newsletter -->
 

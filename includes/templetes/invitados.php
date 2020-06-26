@@ -11,7 +11,7 @@
 
     ?>
        
-    <section class="invitados contenedor seccion">
+    <section class="invitados contenedor seccion" id="invitados">
       <h2>Nuestros Invitados</h2>
 
       <ul class="lista-invitados">
