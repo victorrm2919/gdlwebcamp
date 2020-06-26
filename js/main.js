@@ -70,10 +70,11 @@ $('.registro .navegacion-principal a:contains("Reservaciones")').addClass('activ
 
   //animacion numeros 
 
-
-
-var waypoint = new Waypoint({
-  element: document.getElementById('animacionNumeros'),
+  let elementoAnimacion =  document.getElementById('animacionNumeros')
+  
+if(elementoAnimacion){
+new Waypoint({
+  element: elementoAnimacion,
   handler: function(direction) {
     if (direction == 'down') {
       console.log(this.triggerPoint);
@@ -86,6 +87,7 @@ var waypoint = new Waypoint({
   offset: 1000
 })
 
+}
 
 
   //conteo regresivo
