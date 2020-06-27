@@ -10,7 +10,7 @@
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
 
-      <div class="user-panel mt-3 pt-1 pb-3 mb-3 d-flex align-items-md-center">
+      <div class="user-panel mt-3 pt-2 pb-3 mb-3 d-flex align-items-md-center">
         <div class="image">
           <?php 
           
@@ -19,7 +19,7 @@
           $uLetra = substr($nombre, strpos($nombre, ' ')+1,1);
           
           ?>
-          <span class="img-circle bg-gray-light p-sm-2 mr-1"><?php echo $pLetra.$uLetra?></span>
+          <span class="img-circle bg-gray-light p-2 mr-1"><?php echo $pLetra.$uLetra?></span>
         </div>
         <div class="info px-1">
           <a class="d-block"><?php echo $_SESSION['nombre']?></a>

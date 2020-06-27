@@ -78,26 +78,64 @@ $(function () {
   if ($('#registros').hasClass('registros_inv')) {
     porcentaje = '50%';
     posicion = 1;
+  } else if ($('#registros').hasClass('registros_evt')){
+    porcentaje = '15%';
+    posicion = '0'
   } else {
     porcentaje = `${100/(ultimaCol)}%`;
     posicion = '_all'
   }
 
-  let table = $('#registros').DataTable({
-    "responsive": true,
-    "autoWidth": false,
-    "columnDefs": [{
-      "width": porcentaje,
-      "targets": posicion
-    }, ],
-    "language": {
-      "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+let table = $('#registros').DataTable({
+  responsive: {
+    details: {
+      display: $.fn.dataTable.Responsive.display.modal({
+        header: function (row) {
+          var data = row.data();
+          return 'Detalle de ' + data[0];
+        }
+      }),
+      renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+        tableClass: 'table'
+      })
     }
-  });
+  },
+  "autoWidth": false,
+  "columnDefs": [{
+    "width": porcentaje,
+    "targets": posicion
+  }, ],
+  "language": {
+    "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+    "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+    "infoFiltered": "(filtro de _MAX_ registros totales)",
+    "emptyTable": "No hay datos disponibles",
+    "lengthMenu": "Mostrar _MENU_ registros",
+    "loadingRecords": "Cargando...",
+    "processing": "Procesando...",
+    "search": "Buscar:",
+    "zeroRecords": "No se encontraron resultados",
+    "paginate": {
+      "first": "Inicio",
+      "last": "Último",
+      "next": "Siguiente",
+      "previous": "Anterior"
+    },
+    "aria": {
+      "sortAscending": ": activar para orden A-Z",
+      "sortDescending": ": activar para orden Z-A"
+    }
+  }
+});
 
   if ($('#registros').hasClass('registrados')) {
     table.column(2).order('desc').draw();
   }
+
+  $('#registros').click(function () {
+    $('.modal-dialog').addClass('modal-xl text-center ajuste');
+  });
+  
 
   //Daterangepicker
   $('#fecha-evento').daterangepicker({

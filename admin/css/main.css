@@ -15,6 +15,11 @@ html, body {
     max-width: 100%;
 }
 
+.ajuste {
+    width: 95%;
+    margin: auto;
+}
+
 /* Formulario de registrados */
 #validacionInfo {
     display: none;

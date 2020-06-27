@@ -28,14 +28,14 @@
 <ul class="navbar-nav ml-auto">
 
 <li class="nav-item">
-  <a class="nav-link" id="ajustes" data-id="<?php echo $_SESSION['id'] ?>" href="#">
+  <a class="nav-link" id="ajustes" data-id="<?php echo $_SESSION['id'] ?>" href="#" title="Ajustes de Usuario">
     <i class="fas fa-user-cog"></i>
   </a>
 </li>
 
 
 <li class="nav-item">
-  <a class="nav-link" id="cerrar-sesion" href="#">
+  <a class="nav-link" id="cerrar-sesion" href="#" title="Cerrar Sesión">
     <i class="fas fa-sign-out-alt"></i>
   </a>
 </li>
