@@ -14,12 +14,6 @@ include 'templates/navegacion.php';
           <div class="col-sm-6">
             <h1>Categorias</h1>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
-            </ol>
-          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -50,13 +44,13 @@ include 'templates/navegacion.php';
 
                   while ($categoria = $resultado->fetch_assoc()):?>
                     <tr>
-                      <td class="align-middle"><?php echo $categoria ['cat_evento'] ?></td>
-                      <td class="align-middle"><i class="<?php echo $categoria ['icono'] ?>"></i></td>
+                      <td class="align-middle"><?php echo $categoria['cat_evento'] ?></td>
+                      <td class="align-middle"><i class="<?php echo $categoria['icono'] ?>"></i></td>
                       <td class="align-middle">
-                        <a href="editar-categoria.php?id=<?php echo $categoria ['id_categoria'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
+                        <a href="editar-categoria.php?id=<?php echo $categoria['id_categoria'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
                           <i class="fas fa-edit"></i>
                         </a>
-                        <a href="#" data-id="<?php echo $categoria ['id_categoria'] ?>" data-tipo="categorias" class="btn btn-sm bg-gradient-maroon m-1 borrar-registro">
+                        <a href="#" data-id="<?php echo $categoria['id_categoria'] ?>" data-tipo="categorias" class="btn btn-sm bg-gradient-maroon m-1 borrar-registro">
                           <i class="fas fa-trash-alt"></i>
                         </a>
                       </td>

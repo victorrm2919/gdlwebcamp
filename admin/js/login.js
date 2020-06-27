@@ -1,5 +1,7 @@
 $(function () {
-    $('.login-box').addClass('animate__zoomIn');
+  $('.login-box').addClass('animate__zoomIn');
+  $('.login-box').css('display', 'block');
+  
 
 
     $('#login-admin').on('submit', function (e) {

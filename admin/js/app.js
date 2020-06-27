@@ -1,3 +1,11 @@
+ /* Navegacion */
+ let pathPagina = window.location.pathname, indiceAdmin = pathPagina.indexOf('admin/');
+ let pagina = pathPagina.substr((indiceAdmin + 6), pathPagina.length)
+
+ $(`.sidebar .nav-item a[href="${pagina}"]`).toggleClass('active').parents('li.has-treeview').toggleClass('menu-open').children('a.nav-link').toggleClass('active')
+ 
+
+
 $(function () {
 
   /* *********************** Librerias *********************** */
@@ -64,8 +72,6 @@ $(function () {
   });
   
 
-
-
   //datatable
   let ultimaCol = $('#registros thead th').length
   let porcentaje, posicion;
@@ -130,6 +136,7 @@ $(function () {
 
 
   /* Pages */
+  
 
   /* Administradores */
 
@@ -228,9 +235,17 @@ $(function () {
         $('#validacionInfo').fadeOut().text('');
       }
     }
-
-
   });
+
+  /* Regalos */
+
+  $('.crear-registro-regalo').on('input', function (e) {
+    if ($(e.target).val() == '') {
+      $('#btn-crear-registro-regalo').attr('disabled', true);
+    } else {
+      $('#btn-crear-registro-regalo').attr('disabled', false);
+    }
+  })
 
 
 });

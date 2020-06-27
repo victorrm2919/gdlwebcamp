@@ -1,15 +1,19 @@
+html, body {
+    transition: all .3s ease;
+}
+
+.login-box {
+    display: none;
+}
+
+.menu-usuario {
+    z-index: 10;
+}
+
 /* Datatables */
 #registros {
     max-width: 100%;
 }
-
-.borrar-registro {
-    z-index: 10;
-}
-.borrar-registro i{
-    z-index: -1;
-}
-
 
 /* Formulario de registrados */
 #validacionInfo {

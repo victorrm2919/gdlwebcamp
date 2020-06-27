@@ -8,10 +8,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../index.php" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="index.php" class="nav-link">Inicio</a>
       </li>
     </ul>
 
@@ -29,22 +26,22 @@
 
 <!-- Right navbar links -->
 <ul class="navbar-nav ml-auto">
-      <!-- Notifications Dropdown Menu -->
 
-      <li class="nav-item dropdown user-menu">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <span>Hola: <?php echo $_SESSION['nombre'] ?></span>
-        </a>
+<li class="nav-item">
+  <a class="nav-link" id="ajustes" data-id="<?php echo $_SESSION['id'] ?>" href="#">
+    <i class="fas fa-user-cog"></i>
+  </a>
+</li>
 
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <div class="dropdown-footer">
-              <button type="button" class="btn btn-block btn-outline-primary btn-sm" id="ajustes" data-id="<?php echo $_SESSION['id'] ?>">Ajustes</button>
-              <button type="button" class="btn btn-block btn-outline-primary btn-sm" id="cerrar-sesion">Cerrar Sesión</button>
-          </div>
-        </div>
 
-      </li>
+<li class="nav-item">
+  <a class="nav-link" id="cerrar-sesion" href="#">
+    <i class="fas fa-sign-out-alt"></i>
+  </a>
+</li>
 
-    </ul>
+
+
+</ul>
   </nav>
   <!-- /.navbar -->
