@@ -6,7 +6,7 @@ $(function () {
   $('#guardar-registro').on('submit', function (e) {
     e.preventDefault();
     let datos = $(this).serializeArray();
-
+    console.log(datos);
     $.ajax({
       type: $(this).attr('method'),
       url:  $(this).attr('action'),
@@ -45,7 +45,6 @@ $(function () {
             showConfirmButton: false,
             timer: 1500,
             onClose: () => {
-              
               //Limpieza al crear registros
               if (data.registro == 'Nuevo') {
                 $('#guardar-registro')[0].reset();
@@ -212,6 +211,7 @@ function crearAdmin() {
   $('#repetir-password').removeClass('is-invalid').removeClass('is-valid');
   $('#password').parents('.form-group').removeClass('was-validate');
   $('#repetir-password').parents('.form-group').removeClass('was-validate');
+  $('#nivel').val(null).trigger('change');
 }
 
 function crearEvento() {
@@ -220,10 +220,10 @@ function crearEvento() {
 }
 
 function editarAdmin(nivel) {
-  if (nivel == 1) {
+  if (nivel == '1') {
     window.location.href = 'lista-admin.php'
   } else {
-    window.location.href = 'admin-area.php'
+    window.location.href = 'dashboard.php'
   }
 }
 

@@ -20,6 +20,17 @@ include 'templates/navegacion.php';
     </div><!-- /.container-fluid -->
   </section>
 
+
+<?php if(!$_SESSION['nivel'] == '1') {?>
+  <div class="row">
+    <div class="col-xl-8 m-xl-auto m-3">
+      <div class="alert alert-danger alert-dismissible">
+        <h5><i class="icon fas fa-ban"></i> Alto!</h5>
+        <p>No tienes acceso a esta pagina, <a href="index.php" class="alert-link">Regresa al Dashboard</a></p>
+      </div>
+    </div>
+  </div>
+<?php }else {?>
   <div class="row">
     <div class="col-xl-8 m-xl-auto m-3">
       <!-- Main content -->
@@ -85,6 +96,15 @@ include 'templates/navegacion.php';
                   </div>
                 </div>
               </div>
+
+              <div class="form-group row">
+                <label for="nivelA" class="col-sm-3 col-form-label">Nivel:</label>
+                  <select class="form-control col-sm-9 select" id="nivelA" name="nivelA">
+                  <option></option>
+                  <option value="1">SU</option>
+                  <option value="0">BA</option>
+                  </select>
+              </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-right">
@@ -100,6 +120,8 @@ include 'templates/navegacion.php';
       <!-- /.content -->
     </div>
   </div>
+<?php }?>
+
 </div>
 <!-- /.content-wrapper -->
 

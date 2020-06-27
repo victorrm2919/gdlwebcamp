@@ -1,5 +1,9 @@
 <?php 
 include 'functions/funciones.php';
+if (!isset($_POST['usuario'])) {
+    die(header('Location: error.php'));
+}
+
 $usuario = $_POST['usuario'];
 $pass = $_POST['password'];
 

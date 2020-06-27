@@ -1,5 +1,8 @@
 <?php 
 include 'functions/funciones.php';
+if (!isset($_POST['registro'])) {
+    die(header('Location: error.php'));
+}
 
 if ($_POST['registro'] == 'nuevo') {
     $categoria = $_POST['nombre'];

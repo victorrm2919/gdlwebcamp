@@ -20,6 +20,19 @@ include 'templates/navegacion.php';
 
     <!-- Main content -->
     <section class="content">
+
+    <?php if(!$_SESSION['nivel'] == '1') {?>
+      <div class="row">
+        <div class="col-xl-8 m-xl-auto m-3">
+          <div class="alert alert-danger alert-dismissible">
+            <h5><i class="icon fas fa-ban"></i> Alto!</h5>
+            <p>No tienes acceso a esta pagina, <a href="index.php" class="alert-link">Regresa al Dashboard</a></p>
+          </div>
+        </div>
+      </div>
+    <?php }else {?>
+
+
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -33,19 +46,21 @@ include 'templates/navegacion.php';
                   <tr>
                     <th>Usuario</th>
                     <th>Nombre</th>
+                    <th>Nivel</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php 
                   
-                  $sql = "SELECT id, usuario, nombre FROM admins";
+                  $sql = "SELECT * FROM admins";
                   $resultado = $conn->query($sql);
 
                   while ($admin = $resultado->fetch_assoc()):?>
                     <tr>
                       <td class="align-middle"><?php echo $admin['usuario'] ?></td>
                       <td class="align-middle"><?php echo $admin['nombre'] ?></td>
+                      <td class="align-middle"><?php echo $admin['nivel'] ?></td>
                       <td class="align-middle botones">
                         <a href="editar-admin.php?id=<?php echo $admin['id'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
                           <i class="fas fa-edit"></i>
@@ -63,6 +78,7 @@ include 'templates/navegacion.php';
                   <tr>
                     <th>Usuario</th>
                     <th>Nombre</th>
+                    <th>Nivel</th>
                     <th>Acciones</th>
                   </tr>
                 </tfoot>
@@ -75,6 +91,9 @@ include 'templates/navegacion.php';
         <!-- /.col -->
       </div>
       <!-- /.row -->
+
+
+    <?php }?>
     </section>
     <!-- /.content -->
   </div>
