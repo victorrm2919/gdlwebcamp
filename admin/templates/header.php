@@ -46,12 +46,12 @@ include 'functions/sesiones.php';
 <?php 
 $pagina = obtenerPaginaActual();
 
-if ($pagina === 'login') {
-  echo '<body class="hold-transition login-page">';
-} else {
-  echo '<body class="hold-transition sidebar-mini layout-navbar-fixed">';
-}
-?>
+if ($pagina === 'login') {?>
+  <body class="hold-transition login-page">
+<?php } else {?>
+
+  <body class="hold-transition sidebar-mini layout-navbar-fixed">
+<?php } ?>
 
 
 
