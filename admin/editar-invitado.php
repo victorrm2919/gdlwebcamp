@@ -5,7 +5,7 @@ $id_invitado = $_GET['id'];
 
 if (!filter_var($id_invitado, FILTER_VALIDATE_INT)) {
 
-  die("Error en los datos solicitados");
+  die(header('Location: error.php'));
  
 }
 include 'templates/header.php';

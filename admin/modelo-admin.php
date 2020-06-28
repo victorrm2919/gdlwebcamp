@@ -1,18 +1,22 @@
 <?php 
 include 'functions/funciones.php';
 
+if (!isset($_POST['registro'])) {
+    die(header('Location: error.php'));
+}
 
 if ($_POST['registro'] == 'nuevo') {
     $usuario = $_POST['usuario'];
     $nombre = $_POST['nombre'];
     $pass = $_POST['password'];
+    $nivel =$_POST['nivel'];
     $opciones = array('costo' => 12);
     $password = password_hash($pass, PASSWORD_BCRYPT, $opciones);
 
     try {
 
-        $stmt = $conn->prepare("INSERT INTO admins (usuario, nombre, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $usuario, $nombre, $password);
+        $stmt = $conn->prepare("INSERT INTO admins (usuario, nombre, password, nivel) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("sssi", $usuario, $nombre, $password, $nivel);
         $stmt->execute();
         if($stmt->affected_rows > 0 ){
             $respuesta = array(
@@ -40,6 +44,8 @@ if ($_POST['registro'] == 'actualizar') {
     $usuario = $_POST['usuario'];
     $nombre = $_POST['nombre'];
     $pass = $_POST['password'];
+    $nivel = (isset($_POST['nivelA']) ? $_POST['nivelA'] : 0);
+
     try {
         $id = $_POST['id_registro'];
             
@@ -47,12 +53,12 @@ if ($_POST['registro'] == 'actualizar') {
             //si se envia actualizacion de pasword
             $opciones = array('costo' => 12);
             $password = password_hash($pass, PASSWORD_BCRYPT, $opciones);
-            $stmt = $conn->prepare("UPDATE admins SET usuario = ?, nombre = ?, password = ?, editado = NOW() WHERE id = ?");
-            $stmt->bind_param("sssi", $usuario, $nombre, $password, $id);
+            $stmt = $conn->prepare("UPDATE admins SET usuario = ?, nombre = ?, password = ?, nivel = ?, editado = NOW() WHERE id = ?");
+            $stmt->bind_param("ssssi", $usuario, $nombre, $password, $nivel, $id);
         } else {
             //sin actualizacion de password
-            $stmt = $conn->prepare("UPDATE admins SET usuario = ?, nombre = ?, editado = NOW() WHERE id = ?");
-            $stmt->bind_param("ssi", $usuario, $nombre, $id);
+            $stmt = $conn->prepare("UPDATE admins SET usuario = ?, nombre = ?, nivel = ?, editado = NOW() WHERE id = ?");
+            $stmt->bind_param("sssi", $usuario, $nombre, $nivel, $id);
         }
         
         $stmt->execute();

@@ -14,12 +14,6 @@ include 'templates/navegacion.php';
         <div class="col-sm-6">
           <h1>Eventos</h1>
         </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">DataTables</li>
-          </ol>
-        </div>
       </div>
     </div><!-- /.container-fluid -->
   </section>
@@ -34,7 +28,7 @@ include 'templates/navegacion.php';
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="registros" class="table table-bordered table-striped text-center display nowrap" style='width: 100%'>
+            <table id="registros" class="table table-bordered table-striped text-center display registros_evt" style='width: 100%'>
               <thead>
 
                 <tr>
@@ -66,13 +60,13 @@ include 'templates/navegacion.php';
 
                   while ($evento = $resultado->fetch_assoc()):?>
                 <tr>
-                  <td class="text-left align-middle"><?php echo $evento ['nombre_evento'] ?></td>
-                  <td class="align-middle"><?php echo $evento ['fecha_evento'] ?></td>
-                  <td class="align-middle"><?php echo $evento ['hora_evento'] ?></td>
-                  <td class="align-middle"><?php echo $evento ['cat_evento'] ?></td>
-                  <td class="align-middle"><?php echo $evento ['nombre_invitado'] . ' ' . $evento['apellido_invitado']?></td>
+                  <td class="text-left align-middle"><?php echo $evento['nombre_evento'] ?></td>
+                  <td class="align-middle"><?php echo $evento['fecha_evento'] ?></td>
+                  <td class="align-middle"><?php echo $evento['hora_evento'] ?></td>
+                  <td class="align-middle"><?php echo $evento['cat_evento'] ?></td>
+                  <td class="align-middle"><?php echo $evento['nombre_invitado'] . ' ' . $evento['apellido_invitado']?></td>
                   <td class="align-middle">
-                        <a href="editar-evento.php?id=<?php echo $evento ['evento_id'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
+                        <a href="editar-evento.php?id=<?php echo $evento['evento_id'] ?>" class="btn btn-sm bg-gradient-yellow m-1">
                           <i class="fas fa-edit"></i>
                         </a>
                         <a href="#" data-id="<?php echo $evento ['evento_id'] ?>" data-tipo="evento" class="btn btn-sm bg-gradient-maroon m-1 borrar-registro">

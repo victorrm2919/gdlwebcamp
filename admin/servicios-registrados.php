@@ -19,6 +19,7 @@ include 'functions/sesiones.php';
             'datos' => $arreglos_registros,
             'respuesta' => 'correcto'
         );
+        $conn->close();
         
     } catch (\Throwable $th) {
         $resultado =  array(

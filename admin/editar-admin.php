@@ -5,7 +5,7 @@ $id_admin = $_GET['id'];
 
 if (!filter_var($id_admin, FILTER_VALIDATE_INT)) {
 
-  die("Error en los datos solicitados");
+  die(header('Location: error.php'));
  
 }
 include 'templates/header.php';
@@ -77,6 +77,15 @@ try {
                     </div>
                   </div>
                 </div>
+
+                <div class="form-group row">
+                <label for="nivelA" class="col-sm-3 col-form-label">Nivel:</label>
+                  <select class="form-control col-sm-9 select" id="nivelA" name="nivelA" <?php if (!$_SESSION['nivel'] == '1') {echo 'disabled';} ?>>
+                  <option></option>
+                  <option value="1" <?php if ($admin['nivel'] == '1') {echo 'selected';} ?>>SU</option>
+                  <option value="0" <?php if ($admin['nivel'] == '0') {echo 'selected';} ?>>BA</option>
+                  </select>
+              </div>
               </div>
               <!-- /.card-body -->
               <div class="card-footer text-right">
