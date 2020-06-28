@@ -56,6 +56,14 @@ if ($pagina !== 'login') {
 <script src="js/app.js"></script>
 
 
+<?php
+	// Guarda todo el contenido a un archivo
+	$fp = fopen($archivoCache, 'w');
+	fwrite($fp, ob_get_contents());
+	fclose($fp);
+	// Enviar al navegador
+  ob_end_flush();
+?>
 
 
 </body>
