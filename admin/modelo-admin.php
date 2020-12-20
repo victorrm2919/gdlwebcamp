@@ -9,7 +9,7 @@ if ($_POST['registro'] == 'nuevo') {
     $usuario = $_POST['usuario'];
     $nombre = $_POST['nombre'];
     $pass = $_POST['password'];
-    $nivel =$_POST['nivel'];
+    $nivel =$_POST['nivelA'];
     $opciones = array('costo' => 12);
     $password = password_hash($pass, PASSWORD_BCRYPT, $opciones);
 
@@ -28,7 +28,8 @@ if ($_POST['registro'] == 'nuevo') {
             $respuesta = array(
                 'respuesta' => 'Error',
                 'tipo' => 'Administrador',
-                'registro' => 'Nuevo'
+                'registro' => 'Nuevo',
+                'info' =>$stmt->error
             );
         }
         $stmt->close();
